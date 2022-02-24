@@ -126,7 +126,7 @@ public class SignInDash {
 		dash.setVisible(true); 
 	}
 	
-	
+	// main
 	public static void main(String[] args) {
 		
 		initGUI();
