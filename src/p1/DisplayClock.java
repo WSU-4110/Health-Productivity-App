@@ -24,7 +24,7 @@ public class DisplayClock extends JPanel  {
 	   
 	   public DisplayClock() {
 	      setPreferredSize(new Dimension(size, size));
-	      setBackground(Color.YELLOW);
+	      setBackground(Color.BLUE);
 	 
 	      new Timer(1000, (ActionEvent e) -> {
 	         repaint();
