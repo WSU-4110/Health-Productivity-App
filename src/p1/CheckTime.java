@@ -8,14 +8,11 @@ public class CheckTime {
 		// Create string to hold time
 		String time = " ";
 		// create object of DateTimeFormatter and specify format
-		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
+		DateTimeFormatter dtf = DateTimeFormatter.ofPattern("HH:mm:ss");
 		
 		// create object of LocalDateTime
 		LocalDateTime now = LocalDateTime.now();  
 		
-		//print date and time
-		//System.out.println(dtf.format(now));  
-		//System.out.println("Made it to check clock");
 		// return date and time
 		time = dtf.format(now);
 		return time;
