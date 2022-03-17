@@ -24,6 +24,8 @@ public class SignInDash {
 	GridBagConstraints e = new GridBagConstraints(); 
 	GridBagConstraints f = new GridBagConstraints();  
 	GridBagConstraints g = new GridBagConstraints();  
+	//Display Clock
+	GridBagConstraints h = new GridBagConstraints();
 	
 	//c.insets = new Insets(5, 5, 5, 5);
 	
@@ -91,6 +93,16 @@ public class SignInDash {
 	g.gridy = 2;
 	pane.add(button, g);
 	
+	//Display Clock
+	//label = new JLabel("DisplayClock");
+	h.fill = GridBagConstraints.NONE;
+	h.weighty = 0.1;
+	h.gridx = 1;
+	h.gridy = 2;
+	//pane.add(label, h);
+	pane.add(new DisplayClock(), h);
+	//pane.add(new DisplayClock(), BorderLayout.CENTER);
+	
 	
 	/*
 	button = new JButton("+ Create reminder");  
@@ -119,17 +131,24 @@ public class SignInDash {
 		JFrame dash = new JFrame("Reminders App");
 		dash.getContentPane().setBackground(new Color(229,227,201));
 		dash.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); 
-		addComponentsToPane(dash.getContentPane());  
+		addComponentsToPane(dash.getContentPane()); 
+	
+		
 		dash.pack();
 		//dash.setMinimumSize(new Dimension(450, 300));
 		dash.setLocationRelativeTo(null); 
-		dash.setVisible(true); 
+		dash.setVisible(true);
+		// display clock
+		//DisplayClock dc = new DisplayClock();
+		
+		
+
 	}
 	
 	// main
 	public static void main(String[] args) {
-		
 		initGUI();
+
 		
 	}
 }

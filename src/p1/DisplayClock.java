@@ -15,7 +15,7 @@ public class DisplayClock extends JPanel  {
 	   final float degrees30 = degrees06 * 5;
 	   final float degrees90 = degrees30 * 3;
 	 
-	   int size = 300;
+	   int size = 200;
 	   int spacing = 10;
 	   int diameter = size - 2 * spacing;
 	   int cx = diameter / 2 + spacing;
@@ -82,10 +82,10 @@ public class DisplayClock extends JPanel  {
 	      }
 	      
 	      // draw the cardinal hour markers
-	      g.drawString("9", (int)(rec.getCenterX()) - 275, (int)(rec.getCenterY()) - 145);  
+	      /*g.drawString("9", (int)(rec.getCenterX()) - 275, (int)(rec.getCenterY()) - 145);  
 	      g.drawString("3", (int)(rec.getCenterX()) - 40, (int)(rec.getCenterY()) - 145);  
 	      g.drawString("12", (int)(rec.getCenterX()) - 160, (int)(rec.getCenterY()) - 260);  
-	      g.drawString("6", (int)(rec.getCenterX()) - 155, (int)(rec.getCenterY()) - 25); 
+	      g.drawString("6", (int)(rec.getCenterX()) - 155, (int)(rec.getCenterY()) - 25); */
 	    
 	      
 	   }
