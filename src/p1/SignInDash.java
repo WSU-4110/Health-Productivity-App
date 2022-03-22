@@ -1,137 +1,180 @@
 
 package p1;
+
 import java.awt.*;
+import java.awt.event.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.WindowEvent;
+
 import javax.swing.*;  
-import java.util.*;
+//import java.util.*;
 
-public class SignInDash {
+public class SignInDash extends Frame implements ActionListener {
 	
-	final static boolean shouldFill = true;
-	final static boolean shouldWeightX = true;
-	final static boolean RIGHT_TO_LEFT = false;
 	  
-	public static void addComponentsToPane(Container pane) { 
+	//Where we set up GUI components in Sign In Dashboard
+	public static void addComponentsToPane(Container pane) {
 	
-	if (RIGHT_TO_LEFT) {
-            pane.setComponentOrientation(ComponentOrientation.RIGHT_TO_LEFT);
-        }
-	  
-	JButton button;  
-	JLabel label;
-	pane.setLayout(new GridBagLayout());  
-	GridBagConstraints c = new GridBagConstraints();  
-	GridBagConstraints d = new GridBagConstraints();  
-	GridBagConstraints e = new GridBagConstraints(); 
-	GridBagConstraints f = new GridBagConstraints();  
-	GridBagConstraints g = new GridBagConstraints();  
+		//Set component orientation - left to right
+	    pane.setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
+	    
+	    //Initializing buttons and labels
+		JButton b1, b2, b3, b4, b5;
+		JLabel label1;
+		
+		//Set GridBag layout and constraints
+		pane.setLayout(new GridBagLayout());  
+		GridBagConstraints gbc = new GridBagConstraints(); 
+		
+		//External padding for each component (top, left, bottom, right)
+		gbc.insets = new Insets (2, 5, 2, 5);
+		
+		
+		//Reminders Title
+			//Set font, font color, and background color
+		label1 = new JLabel("Reminders Application", SwingConstants.CENTER);
+		label1.setFont(new Font("Helvetica", Font.BOLD, 25));
+		label1.setForeground(new Color(18,19,15));
+		label1.setOpaque(true);
+		label1.setBackground(new Color(91,146,121));
+		//Grid positioning
+		gbc.gridx = 1;
+		gbc.gridy = 0;
+		//Internal padding
+		gbc.ipady = 15;
+		//Spacing
+		gbc.weightx = 0.2;
+		gbc.weighty = 0;
+		//As window resizes, components stretch horizontally
+		gbc.fill = GridBagConstraints.HORIZONTAL;
+		//Add component to pane, follows constraints
+		pane.add(label1, gbc);
+		
+		
+		//Create Reminder button
+		b1 = new JButton("+ Create Reminder");
+		//Grid positioning
+		gbc.gridx = 0;
+		gbc.gridy = 3;
+		//Internal padding
+		gbc.ipady = 20;
+		//Spacing
+		gbc.weightx = 0.2;
+		gbc.weighty = 0;
+		//Add component to pane, follows constraints
+		pane.add(b1, gbc);
+		
+		 b1.addActionListener(new SignInDash());
+		
 	
-	//c.insets = new Insets(5, 5, 5, 5);
-	
-	/*
-	label = new JLabel();
-	//c.weightx = 0.5;
-	c.fill = GridBagConstraints.HORIZONTAL;
-	c.gridx = 0;
-	c.gridy = 0;
-	pane.add(label, c); */
-	  
-	label = new JLabel("Reminders Application", SwingConstants.CENTER);
-	label.setFont(new Font("Helvetica", Font.BOLD, 25));
-	label.setForeground(new Color(120,147,149));
-	c.fill = GridBagConstraints.NONE;
-	c.weighty = 0.1;
-	c.anchor = GridBagConstraints.NORTH;
-	c.gridx = 1;  
-	c.gridy = 0;  
-	pane.add(label, c);  
-	
-	button = new JButton("Account");
-	if (shouldWeightX) {
-    d.weightx = 0.5;
-    }
-	//d.weightx = 1;
-	d.weighty = 0.1;
-	d.fill = GridBagConstraints.HORIZONTAL;
-	//d.ipadx = 30;
-	//d.ipady = 15;
-	d.gridx = 0;
-	d.gridy = 1;
-	pane.add(button, d);
-
-
-	button = new JButton("Sign Out");
-	e.fill = GridBagConstraints.HORIZONTAL;
-	//d.weightx = 1;
-	e.weighty = 0.1;
-	//d.ipadx = 30;
-	//d.ipady = 15;
-	e.gridx = 2;
-	e.gridy = 1;
-	pane.add(button, e);
-	
-	button = new JButton("+ Create reminder");
-	//e.weightx = 0.2;
-	f.weighty = 0.1;
-	f.fill = GridBagConstraints.HORIZONTAL;
-	//e.ipadx = 20;
-	f.ipady = 15;
-	//e.gridwidth = 2;
-	f.gridx = 0;
-	f.gridy = 2;
-	pane.add(button, f);
-
-
-	button = new JButton("Other 2");
-	g.fill = GridBagConstraints.HORIZONTAL;
-	//e.weightx = 0.2;
-	g.weighty = 0.1;
-	//e.ipadx = 20;
-	//e.ipady = 20;
-	g.gridx = 2;
-	g.gridy = 2;
-	pane.add(button, g);
-	
-	
-	/*
-	button = new JButton("+ Create reminder");  
-	e.fill = GridBagConstraints.HORIZONTAL;  
-	e.ipady = 20;      //make this component tall  
-	//e.weighty = 0.0;  
-	e.gridwidth = 1;  
-	e.gridx = 0;  
-	e.gridy = 3;  
-	pane.add(button, e);  
-	  
-	button = new JButton("5");  
-	e.fill = GridBagConstraints.HORIZONTAL;  
-	//e.ipady = 1;       //reset to default  
-	//e.weighty = 0.5;   //request any extra vertical space  
-	//e.anchor = GridBagConstraints.PAGE_END; //bottom of space  
-	e.insets = new Insets(3,0,0,0);  //top padding  
-	e.gridx = 2;
-	e.gridy = 2;    
-	e.gridwidth = 3;  
-	pane.add(button, e); */
+		//Account button
+		b2 = new JButton("Account");
+		//Grid positioning
+		gbc.gridx = 1;
+		gbc.gridy = 1;
+		//Internal padding
+		gbc.ipady = 0;
+		//Spacing
+		gbc.weightx = 0.2;
+		gbc.weighty = 0;
+		//Add component to pane, follows constraints
+		pane.add(b2, gbc);
+		
+		
+		//Sign Out button
+		b3 = new JButton("Sign Out");
+		//Grid positioning
+		gbc.gridx = 1;
+		gbc.gridy = 2;
+		//Spacing
+		gbc.weightx = 0.2;
+		gbc.weighty = 0;
+		//Add component to pane, follows constraints
+		pane.add(b3, gbc);
+		
+		
+		//Clock placeholder
+		b4 = new JButton("Clock");
+		//Grid positioning
+		gbc.gridx = 2;
+		gbc.gridy = 3;
+		//Internal padding
+		gbc.ipady = 20;
+		gbc.ipadx = 75;
+		//Spacing
+		gbc.weightx = 0.2;
+		gbc.weighty = 0;
+		//Add component to pane, follows constraints
+		pane.add(b4, gbc);
+		
+		
+		//Date placeholder
+		b5 = new JButton("Date");
+		//Grid positioning
+		gbc.gridx = 2;
+		gbc.gridy = 4;
+		//Internal padding
+		gbc.ipady = 10;
+		gbc.ipadx = 75;
+		//Spacing
+		gbc.weightx = 0.2;
+		gbc.weighty = 0;
+		//Add component to pane, follows constraints
+		pane.add(b5, gbc);
 	
 	}  
 	
+	//Initializing GUI
 	public static void initGUI() {
-		JFrame dash = new JFrame("Reminders App");
-		dash.getContentPane().setBackground(new Color(229,227,201));
-		dash.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); 
+		
+		//Creates Reminder frame
+		JFrame dash = new JFrame("Reminder");
+		
+		//GUI components get added to the frame
 		addComponentsToPane(dash.getContentPane());  
-		dash.pack();
-		//dash.setMinimumSize(new Dimension(450, 300));
+		
+		//Sets background color of frame
+		dash.getContentPane().setBackground(new Color(234,230,229));
+		
+		//When user closes the frame, the program quits
+		dash.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); 
+		
+		//Sets minimum size of frame
+		dash.setMinimumSize(new Dimension(600, 250));
+		
+		//Sets frame in the middle of the screen
 		dash.setLocationRelativeTo(null); 
+		
+		//Allows frame to be visible
 		dash.setVisible(true); 
 	}
 	
-	// main
+	// Main - where we call initGUI
 	public static void main(String[] args) {
 		
 		initGUI();
 		
 	}
+	
+    public void windowClosing(WindowEvent e) {
+        dispose();
+        System.exit(0);
+    }
+
+    public void windowOpened(WindowEvent e) {}
+    public void windowActivated(WindowEvent e) {}
+    public void windowIconified(WindowEvent e) {}
+    public void windowDeiconified(WindowEvent e) {}
+    public void windowDeactivated(WindowEvent e) {}
+    public void windowClosed(WindowEvent e) {}
+	
+	public void actionPerformed(ActionEvent e) {
+		JFrame createReminder = new JFrame("Reminder");
+		createReminder.setMinimumSize(new Dimension(600, 250));
+		createReminder.setLocationRelativeTo(null); 
+		createReminder.setVisible(true); 
+		
+		
+	}
 }
-
-
