@@ -2,7 +2,6 @@
 package p1;
 
 import java.awt.*;
-import java.awt.event.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
@@ -11,8 +10,12 @@ import javax.swing.*;
 //import java.util.*;
 
 public class SignInDash extends Frame implements ActionListener {
-	
-	  
+		
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	//Where we set up GUI components in Sign In Dashboard
 	public static void addComponentsToPane(Container pane) {
 	
@@ -170,11 +173,11 @@ public class SignInDash extends Frame implements ActionListener {
     public void windowClosed(WindowEvent e) {}
 	
 	public void actionPerformed(ActionEvent e) {
-		JFrame createReminder = new JFrame("Reminder");
+		JFrame createReminder = new JFrame("Create Reminder");
+		CreateReminder.addComponentsToPane(createReminder.getContentPane());  
 		createReminder.setMinimumSize(new Dimension(600, 250));
-		createReminder.setLocationRelativeTo(null); 
+		createReminder.setLocationRelativeTo(null);
 		createReminder.setVisible(true); 
-		
 		
 	}
 }
