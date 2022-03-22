@@ -1,10 +1,17 @@
 
 package p1;
+
 import java.awt.*;
+import java.awt.event.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.WindowEvent;
+
 import javax.swing.*;  
 //import java.util.*;
 
-public class SignInDash {
+public class SignInDash extends Frame implements ActionListener {
+	
 	  
 	//Where we set up GUI components in Sign In Dashboard
 	public static void addComponentsToPane(Container pane) {
@@ -58,7 +65,9 @@ public class SignInDash {
 		//Add component to pane, follows constraints
 		pane.add(b1, gbc);
 		
+		 b1.addActionListener(new SignInDash());
 		
+	
 		//Account button
 		b2 = new JButton("Account");
 		//Grid positioning
@@ -131,11 +140,11 @@ public class SignInDash {
 		//When user closes the frame, the program quits
 		dash.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); 
 		
-		//Sets frame in the middle of the screen
-		dash.setLocationRelativeTo(null); 
-		
 		//Sets minimum size of frame
 		dash.setMinimumSize(new Dimension(600, 250));
+		
+		//Sets frame in the middle of the screen
+		dash.setLocationRelativeTo(null); 
 		
 		//Allows frame to be visible
 		dash.setVisible(true); 
@@ -145,6 +154,27 @@ public class SignInDash {
 	public static void main(String[] args) {
 		
 		initGUI();
+		
+	}
+	
+    public void windowClosing(WindowEvent e) {
+        dispose();
+        System.exit(0);
+    }
+
+    public void windowOpened(WindowEvent e) {}
+    public void windowActivated(WindowEvent e) {}
+    public void windowIconified(WindowEvent e) {}
+    public void windowDeiconified(WindowEvent e) {}
+    public void windowDeactivated(WindowEvent e) {}
+    public void windowClosed(WindowEvent e) {}
+	
+	public void actionPerformed(ActionEvent e) {
+		JFrame createReminder = new JFrame("Reminder");
+		createReminder.setMinimumSize(new Dimension(600, 250));
+		createReminder.setLocationRelativeTo(null); 
+		createReminder.setVisible(true); 
+		
 		
 	}
 }
