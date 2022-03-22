@@ -1,2 +1,2 @@
 # Page for files that should be ignored
-bin\*
+bin/p1/*
