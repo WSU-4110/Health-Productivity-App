@@ -64,9 +64,9 @@ public class DisplayClock extends JPanel  {
 	      g.translate(rec.getCenterX(), rec.getCenterY());
 	      g.setFont(new Font("TimesRoman", Font.BOLD, 20));
 	      
-	      
-	      // Drawing time markers on clock
-	      float hourMarkerLen = radius / 6f - 10f;
+	      //=====================================================================================
+	      // Drawing time markers on clock blocked for time being
+	      /*float hourMarkerLen = radius / 6f - 10f;
 	      Shape hourMarker = new Line2D.Float(0f, hourMarkerLen - radius, 0f, -radius);
 	      Shape minuteMarker = new Line2D.Float(0f, hourMarkerLen / 2f - radius, 0f, -radius);
 	      AffineTransform at = AffineTransform.getRotateInstance(0d);
@@ -79,7 +79,8 @@ public class DisplayClock extends JPanel  {
 	          g.draw(at.createTransformedShape(minuteMarker));
 	        }
 	        at.rotate(Math.PI / 30d);
-	      }
+	      }*/
+	      //=====================================================================================
 	      
 	      // draw the cardinal hour markers
 	      /*g.drawString("9", (int)(rec.getCenterX()) - 275, (int)(rec.getCenterY()) - 145);  
