@@ -1,3 +1,3 @@
 # Page for files that should be ignored
-bin/*
-/bin/
+bin
+*.class
