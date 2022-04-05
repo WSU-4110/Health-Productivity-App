@@ -450,7 +450,7 @@ public class CreateReminder extends Frame {
 			gbc.weightx = 0.2;
 			gbc.weighty = 0;
 			//As window resizes, components stretch horizontally
-			gbc.fill = GridBagConstraints.HORIZONTAL;
+			gbc.fill = GridBagConstraints.NONE;
 			//Add component to pane, follows constraints
 			pane.add(submit, gbc);
 			
@@ -737,7 +737,7 @@ public class CreateReminder extends Frame {
 		gbc.weightx = 0.2;
 		gbc.weighty = 0;
 		//As window resizes, components stretch horizontally
-		gbc.fill = GridBagConstraints.HORIZONTAL;
+		gbc.fill = GridBagConstraints.NONE;
 		//Add component to pane, follows constraints
 		pane.add(submit, gbc);
 		
@@ -958,7 +958,7 @@ public class CreateReminder extends Frame {
 		gbc.weightx = 0.2;
 		gbc.weighty = 0;
 		//As window resizes, components stretch horizontally
-		gbc.fill = GridBagConstraints.HORIZONTAL;
+		gbc.fill = GridBagConstraints.NONE;
 		//Add component to pane, follows constraints
 		pane.add(submit, gbc);
 		
