@@ -113,10 +113,15 @@ public class DisplayClock extends JPanel  {
 	         f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	         f.setTitle("DisplayClock");
 	         f.setResizable(false);
-	         f.add(new DisplayClock(), BorderLayout.CENTER);
+	         //f.add(new DisplayClock(), BorderLayout.CENTER);
 	         f.pack();
 	         f.setLocationRelativeTo(null);
 	         f.setVisible(true);
+	         
+	         // Center circle
+	         f.getContentPane().add(new DisplayClock());
+	         
+	         
 	      });
 	   }
 }
