@@ -183,11 +183,12 @@ public abstract class SignInDash extends Frame implements ActionListener {
 					public void actionPerformed(ActionEvent e) {
 						JFrame createReminder = new JFrame("Create Water Reminder");
 						createReminder.getContentPane().setBackground(new Color(239, 245, 243));
-						CreateReminder.addWaterPresetComponentsToPane(createReminder.getContentPane());  
+						drinkWater test1 = new drinkWater();
+						test1.addComponentToPane(createReminder.getContentPane()); 
 						createReminder.setMinimumSize(new Dimension(800, 430));
 						createReminder.pack();
 						createReminder.setLocationRelativeTo(null);
-						createReminder.setVisible(true); 
+						createReminder.setVisible(true);
 				}
 			}
 		);
@@ -213,7 +214,8 @@ public abstract class SignInDash extends Frame implements ActionListener {
 					public void actionPerformed(ActionEvent e) {
 						JFrame createReminder = new JFrame("Create Ranged Time Reminder");
 						createReminder.getContentPane().setBackground(new Color(239, 245, 243));
-						CreateReminder.addStandingPresetComponentsToPane(createReminder.getContentPane());
+						standingBreak test2 = new standingBreak();
+						test2.addComponentToPane(createReminder.getContentPane());
 						createReminder.setMinimumSize(new Dimension(800, 430));
 						createReminder.pack();
 						createReminder.setLocationRelativeTo(null);
