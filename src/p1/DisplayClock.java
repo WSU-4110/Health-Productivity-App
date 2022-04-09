@@ -15,7 +15,7 @@ public class DisplayClock extends JPanel  {
 	   final float degrees30 = degrees06 * 5;
 	   final float degrees90 = degrees30 * 3;
 	 
-	   int size = 300;
+	   int size = 200;
 	   int spacing = 10;
 	   int diameter = size - 2 * spacing;
 	   int cx = diameter / 2 + spacing;
@@ -64,9 +64,9 @@ public class DisplayClock extends JPanel  {
 	      g.translate(rec.getCenterX(), rec.getCenterY());
 	      g.setFont(new Font("TimesRoman", Font.BOLD, 20));
 	      
-	      
-	      // Drawing time markers on clock
-	      float hourMarkerLen = radius / 6f - 10f;
+	      //=====================================================================================
+	      // Drawing time markers on clock blocked for time being
+	      /*float hourMarkerLen = radius / 6f - 10f;
 	      Shape hourMarker = new Line2D.Float(0f, hourMarkerLen - radius, 0f, -radius);
 	      Shape minuteMarker = new Line2D.Float(0f, hourMarkerLen / 2f - radius, 0f, -radius);
 	      AffineTransform at = AffineTransform.getRotateInstance(0d);
@@ -79,13 +79,14 @@ public class DisplayClock extends JPanel  {
 	          g.draw(at.createTransformedShape(minuteMarker));
 	        }
 	        at.rotate(Math.PI / 30d);
-	      }
+	      }*/
+	      //=====================================================================================
 	      
 	      // draw the cardinal hour markers
-	      g.drawString("9", (int)(rec.getCenterX()) - 275, (int)(rec.getCenterY()) - 145);  
+	      /*g.drawString("9", (int)(rec.getCenterX()) - 275, (int)(rec.getCenterY()) - 145);  
 	      g.drawString("3", (int)(rec.getCenterX()) - 40, (int)(rec.getCenterY()) - 145);  
 	      g.drawString("12", (int)(rec.getCenterX()) - 160, (int)(rec.getCenterY()) - 260);  
-	      g.drawString("6", (int)(rec.getCenterX()) - 155, (int)(rec.getCenterY()) - 25); 
+	      g.drawString("6", (int)(rec.getCenterX()) - 155, (int)(rec.getCenterY()) - 25); */
 	    
 	      
 	   }
@@ -112,10 +113,15 @@ public class DisplayClock extends JPanel  {
 	         f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	         f.setTitle("DisplayClock");
 	         f.setResizable(false);
-	         f.add(new DisplayClock(), BorderLayout.CENTER);
+	         //f.add(new DisplayClock(), BorderLayout.CENTER);
 	         f.pack();
 	         f.setLocationRelativeTo(null);
 	         f.setVisible(true);
+	         
+	         // Center circle
+	         f.getContentPane().add(new DisplayClock());
+	         
+	         
 	      });
 	   }
 }

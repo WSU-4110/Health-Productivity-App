@@ -5,9 +5,10 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowEvent;
+import java.text.DateFormat;
 
 import javax.swing.*;  
-//import java.util.*;
+import java.util.*;
 
 public abstract class SignInDash extends Frame implements ActionListener {
 		
@@ -282,16 +283,19 @@ public abstract class SignInDash extends Frame implements ActionListener {
 		gbc.gridy = 3;
 		//Internal padding
 		gbc.ipady = 0;
-		gbc.ipadx = 190;
+		gbc.ipadx = 0; // was 190
 		//Spacing
 		gbc.weightx = 0.2;
 		gbc.weighty = 0;
 		//Add component to pane, follows constraints
-		pane.add(label4, gbc);
+		pane.add(new DisplayClock(), gbc);
 		
 		
 		//Date placeholder
-		date = new JButton("Date Placeholder");
+		// get current date and convert it to a string
+		String day = java.time.LocalDate.now().toString();
+		
+		date = new JButton(day);
 		date.setFont(new Font("Helvetica", Font.BOLD, 13));
 		date.setForeground(Color.WHITE);
 		date.setBackground(new Color(91,146,121));
@@ -305,7 +309,8 @@ public abstract class SignInDash extends Frame implements ActionListener {
 		gbc.weightx = 0.2;
 		gbc.weighty = 0;
 		//Add component to pane, follows constraints
-		pane.add(date, gbc);
+		
+		pane.add(date, gbc); // date,gbc
 	
 	}  
 	
