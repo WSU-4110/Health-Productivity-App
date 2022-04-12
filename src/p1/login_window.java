@@ -136,8 +136,9 @@ public class login_window extends JFrame
                     if (rs.next())
                     {
                         dispose();
-                        //SignInDash ah = new SignInDash();
-                        //ah.setVisible(true);
+                        SignInDash ah = new SignInDash();
+                        ah.main(null);
+                        ah.setVisible(true);
                         JOptionPane.showMessageDialog(btnNewButton, "You have successfully logged in");
                     }
                     else
