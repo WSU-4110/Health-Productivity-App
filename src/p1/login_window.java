@@ -138,7 +138,6 @@ public class login_window extends JFrame
                         dispose();
                         SignInDash ah = new SignInDash();
                         ah.main(null);
-                        ah.setVisible(true);
                         JOptionPane.showMessageDialog(btnNewButton, "You have successfully logged in");
                     }
                     else
