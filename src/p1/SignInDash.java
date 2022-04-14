@@ -10,6 +10,7 @@ import java.text.DateFormat;
 import javax.swing.*;  
 import java.util.*;
 
+
 public class SignInDash extends JFrame {
 		
 	/**
@@ -107,6 +108,7 @@ public class SignInDash extends JFrame {
 				 new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						JFrame createReminder = new JFrame("Create Specific Time Reminder");
+						createReminder.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); 
 						createReminder.getContentPane().setBackground(new Color(239, 245, 243));
 						CreateReminder.addSpecificComponentsToPane(createReminder.getContentPane());  
 						createReminder.setMinimumSize(new Dimension(800, 430));
@@ -404,6 +406,6 @@ public class SignInDash extends JFrame {
     public void windowDeiconified(WindowEvent e) {}
     public void windowDeactivated(WindowEvent e) {}
     public void windowClosed(WindowEvent e) {}
-	
+
 
 }
