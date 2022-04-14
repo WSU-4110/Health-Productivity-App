@@ -24,7 +24,7 @@ public class SignInDash extends JFrame {
 	    pane.setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
 	    
 	    //Initializing buttons and labels
-		JButton specific, range, water, standing, account, signOut, date, placeHolder;
+		JButton specific, range, water, standing, account, signOut, date, placeHolder, Edit;
 		JLabel label1, label2, label3, label4, label5;
 		
 		//Set GridBag layout and constraints
@@ -311,6 +311,35 @@ public class SignInDash extends JFrame {
 		//Add component to pane, follows constraints
 		
 		pane.add(date, gbc); // date,gbc
+		
+		// edit button
+		Edit = new JButton("Edit");
+		Edit.setFont(new Font("Helvetica", Font.BOLD, 13));
+		Edit.setForeground(Color.WHITE);
+		Edit.setBackground(new Color(91,146,121));
+		//Grid Positioning
+		gbc.gridx = 1;
+		gbc.gridy = 5;
+		//Spacing
+		gbc.weightx = 0.2;
+		gbc.weighty = 0;
+		//Internal padding
+		gbc.ipady = 20;
+		pane.add(Edit, gbc);
+		Edit.addActionListener(
+				 new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						JFrame editReminder = new JFrame("Edit Reminder");
+						editReminder.getContentPane().setBackground(new Color(239, 245, 243));
+						EditReminder test3 = new EditReminder();
+						test3.addComponentToPane(editReminder.getContentPane()); 
+						editReminder.setMinimumSize(new Dimension(800, 430));
+						editReminder.pack();
+						editReminder.setLocationRelativeTo(null);
+						editReminder.setVisible(true);
+				}
+			}
+		);
 	
 	}  
 	
