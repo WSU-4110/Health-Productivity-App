@@ -25,12 +25,12 @@ public class SignInDash extends JFrame {
 	    pane.setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
 	    
 	    //Initializing buttons and labels
-		JButton specific, range, water, standing, account, signOut, date, placeHolder, Edit;
+		JButton specific, range, water, standing, account, signOut, placeHolder, Edit;
 		JLabel label1, label2, label3, label4, label5;
 		
 		//Set GridBag layout and constraints
 		pane.setLayout(new GridBagLayout());  
-		GridBagConstraints gbc = new GridBagConstraints(); 
+		GridBagConstraints gbc = new GridBagConstraints();  
 		
 		//External padding for each component (top, left, bottom, right)
 		gbc.insets = new Insets (2, 5, 2, 5);
@@ -111,7 +111,7 @@ public class SignInDash extends JFrame {
 						createReminder.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); 
 						createReminder.getContentPane().setBackground(new Color(239, 245, 243));
 						CreateReminder.addSpecificComponentsToPane(createReminder.getContentPane());  
-						createReminder.setMinimumSize(new Dimension(800, 430));
+						createReminder.setMinimumSize(new Dimension(800, 490));
 						createReminder.pack();
 						createReminder.setLocationRelativeTo(null);
 						createReminder.setVisible(true); 
@@ -141,7 +141,7 @@ public class SignInDash extends JFrame {
 						JFrame createReminder = new JFrame("Create Ranged Time Reminder");
 						createReminder.getContentPane().setBackground(new Color(239, 245, 243));
 						CreateReminder.addRangedComponentsToPane(createReminder.getContentPane());  
-						createReminder.setMinimumSize(new Dimension(800, 430));
+						createReminder.setMinimumSize(new Dimension(800, 490));
 						createReminder.pack();
 						createReminder.setLocationRelativeTo(null);
 						createReminder.setVisible(true); 
@@ -155,6 +155,7 @@ public class SignInDash extends JFrame {
 		//Grid positioning
 		gbc.gridx = 0;
 		gbc.gridy = 6;
+		gbc.gridheight = 1;
 		//Internal padding
 		gbc.ipady = 0;
 		//Spacing
@@ -173,6 +174,7 @@ public class SignInDash extends JFrame {
 		//Grid positioning
 		gbc.gridx = 0;
 		gbc.gridy = 7;
+		gbc.gridheight = 1;
 		//Internal padding
 		gbc.ipady = 20;
 		//Spacing
@@ -188,7 +190,7 @@ public class SignInDash extends JFrame {
 						createReminder.getContentPane().setBackground(new Color(239, 245, 243));
 						drinkWater test1 = new drinkWater();
 						test1.addComponentToPane(createReminder.getContentPane()); 
-						createReminder.setMinimumSize(new Dimension(800, 430));
+						createReminder.setMinimumSize(new Dimension(800, 490));
 						createReminder.pack();
 						createReminder.setLocationRelativeTo(null);
 						createReminder.setVisible(true);
@@ -204,6 +206,7 @@ public class SignInDash extends JFrame {
 		//Grid positioning
 		gbc.gridx = 0;
 		gbc.gridy = 8;
+		gbc.gridheight = 2;
 		//Internal padding
 		gbc.ipady = 20;
 		//Spacing
@@ -219,14 +222,13 @@ public class SignInDash extends JFrame {
 						createReminder.getContentPane().setBackground(new Color(239, 245, 243));
 						standingBreak test2 = new standingBreak();
 						test2.addComponentToPane(createReminder.getContentPane());
-						createReminder.setMinimumSize(new Dimension(800, 430));
+						createReminder.setMinimumSize(new Dimension(800, 490));
 						createReminder.pack();
 						createReminder.setLocationRelativeTo(null);
 						createReminder.setVisible(true); 
 				}
 			}
 		);
-		
 	
 		//Account button
 		account = new JButton("Account");
@@ -236,6 +238,7 @@ public class SignInDash extends JFrame {
 		//Grid positioning
 		gbc.gridx = 1;
 		gbc.gridy = 1;
+		gbc.gridheight = 1;
 		//Internal padding
 		gbc.ipady = 0;
 		//Spacing
@@ -253,6 +256,7 @@ public class SignInDash extends JFrame {
 		//Grid positioning
 		gbc.gridx = 1;
 		gbc.gridy = 2;
+		gbc.gridheight = 1;
 		//Spacing
 		gbc.weightx = 0.2;
 		gbc.weighty = 0;
@@ -266,7 +270,7 @@ public class SignInDash extends JFrame {
 		placeHolder.setBackground(new Color(91,146,121));
 		//Grid positioning
 		gbc.gridx = 1;
-		gbc.gridy = 4;
+		gbc.gridy = 5;
 		//Spacing
 		gbc.weightx = 0.2;
 		gbc.weighty = 0;
@@ -276,13 +280,14 @@ public class SignInDash extends JFrame {
 		pane.add(placeHolder, gbc);
 		
 		
-		//Clock
+		//Clock Title
 		label4 = new JLabel("Clock", SwingConstants.CENTER);
 		label4.setFont(new Font("Helvetica", Font.BOLD, 15));
 		label4.setForeground(new Color(30, 47, 39));
 		//Grid positioning
 		gbc.gridx = 2;
 		gbc.gridy = 3;
+		gbc.gridheight = 1;
 		//Internal padding
 		gbc.ipady = 0;
 		gbc.ipadx = 0; // was 190
@@ -290,28 +295,43 @@ public class SignInDash extends JFrame {
 		gbc.weightx = 0.2;
 		gbc.weighty = 0;
 		//Add component to pane, follows constraints
-		pane.add(new DisplayClock(), gbc);
+		pane.add(label4, gbc);
+		
+		//Display Clock
+				//Grid positioning
+				gbc.gridx = 2;
+				gbc.gridy = 5;
+				gbc.gridheight = 5;
+				//Internal padding
+				gbc.ipady = 0;
+				gbc.ipadx = 0; // was 190
+				//Spacing
+				gbc.weightx = 0;
+				gbc.weighty = 0;
+				//Add component to pane, follows constraints
+				pane.add(new DisplayClock(), gbc);
 		
 		
 		//Date placeholder
 		// get current date and convert it to a string
 		String day = java.time.LocalDate.now().toString();
 		
-		date = new JButton(day);
+		JLabel date = new JLabel(day, SwingConstants.CENTER);
 		date.setFont(new Font("Helvetica", Font.BOLD, 13));
-		date.setForeground(Color.WHITE);
+		date.setForeground(Color.BLACK);
+		date.setOpaque(true);
 		date.setBackground(new Color(91,146,121));
 		//Grid positioning
 		gbc.gridx = 2;
 		gbc.gridy = 4;
+		gbc.gridheight = 1;
 		//Internal padding
-		gbc.ipady = 20;
-		gbc.ipadx = 75;
+		gbc.ipady =  29;
+		gbc.ipadx = 150;
 		//Spacing
 		gbc.weightx = 0.2;
 		gbc.weighty = 0;
 		//Add component to pane, follows constraints
-		
 		pane.add(date, gbc); // date,gbc
 		
 		// edit button
@@ -321,7 +341,8 @@ public class SignInDash extends JFrame {
 		Edit.setBackground(new Color(91,146,121));
 		//Grid Positioning
 		gbc.gridx = 1;
-		gbc.gridy = 5;
+		gbc.gridy = 4;
+		gbc.gridheight = 1;
 		//Spacing
 		gbc.weightx = 0.2;
 		gbc.weighty = 0;
@@ -335,7 +356,7 @@ public class SignInDash extends JFrame {
 						editReminder.getContentPane().setBackground(new Color(239, 245, 243));
 						EditReminder test3 = new EditReminder();
 						test3.addComponentToPane(editReminder.getContentPane()); 
-						editReminder.setMinimumSize(new Dimension(800, 430));
+						editReminder.setMinimumSize(new Dimension(800, 490));
 						editReminder.pack();
 						editReminder.setLocationRelativeTo(null);
 						editReminder.setVisible(true);
@@ -361,7 +382,7 @@ public class SignInDash extends JFrame {
 		dash.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); 
 		
 		//Sets minimum size of frame
-		dash.setMinimumSize(new Dimension(800, 430));
+		dash.setMinimumSize(new Dimension(800, 490));
 		
 		dash.pack();
 		
