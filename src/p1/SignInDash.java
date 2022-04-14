@@ -10,7 +10,7 @@ import java.text.DateFormat;
 import javax.swing.*;  
 import java.util.*;
 
-public abstract class SignInDash extends Frame implements ActionListener {
+public class SignInDash extends JFrame {
 		
 	/**
 	 * 
@@ -343,6 +343,22 @@ public abstract class SignInDash extends Frame implements ActionListener {
 	
 	// Main - where we call initGUI
 	public static void main(String[] args) {
+				
+		/* EventQueue.invokeLater(new Runnable()
+        {
+            public void run()
+            {
+                try
+                {
+                    SignInDash frame = new SignInDash();
+                    frame.setVisible(true);
+                }
+                catch (Exception e)
+                {
+                    e.printStackTrace();
+                }
+            }
+        }); */
 		
 		initGUI();
 		
