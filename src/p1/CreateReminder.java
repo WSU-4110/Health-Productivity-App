@@ -264,7 +264,7 @@ public class CreateReminder extends Frame {
 	        			
 					}
 					else {
-						JOptionPane.showMessageDialog(submit, "Error: reminder must be named and/or valid time must be entered!");
+						JOptionPane.showMessageDialog(submit, "Error!/n * Reminder must be named/n * Valid time (HH:mm) must be entered");
 					}
 					
 				}
@@ -400,10 +400,8 @@ public class CreateReminder extends Frame {
 			pane.add(time, gbc);
 			
 		//How many times
-			JSpinner spinner3 = new JSpinner(new SpinnerNumberModel(2, 2, 24, 1));
-			JComponent editor = spinner3.getEditor();
-			JSpinner.DefaultEditor spinnerEditor = (JSpinner.DefaultEditor)editor;
-			spinnerEditor.getTextField().setHorizontalAlignment(JTextField.LEFT);
+			JTextField numTimes = new JTextField("");
+			
 			//Grid positioning
 			gbc.gridx = 1;
 			gbc.gridy = 6;
@@ -415,7 +413,7 @@ public class CreateReminder extends Frame {
 			//As window resizes, components stretch horizontally
 			gbc.fill = GridBagConstraints.HORIZONTAL;
 			//Add component to pane, follows constraints
-			pane.add(spinner3, gbc);
+			pane.add(numTimes, gbc);
 			
 		//Between what hours
 			hours = new JLabel("Between the hours of");
@@ -435,15 +433,7 @@ public class CreateReminder extends Frame {
 			pane.add(hours, gbc);
 			
 		//Time Spinner 1
-			String times[] = { "00:00", "01:00", "02:00",
-			        "03:00", "04:00", "05.00", "06.00", "07.00",
-			        "08.00", "09.00", "10.00", "11:00", "12:00", "13:00", "14:00",
-			        "15:00", "16:00", "17:00", "18:00", "19:00", "20:00", "21:00",
-			        "22:00", "23:00"};
-			JSpinner spinner1 = new JSpinner(new SpinnerListModel(times));
-			editor = spinner1.getEditor();
-			spinnerEditor = (JSpinner.DefaultEditor)editor;
-			spinnerEditor.getTextField().setHorizontalAlignment(JTextField.LEFT);
+			JTextField remTime1 = new JTextField("HH:mm");
 			//Grid positioning
 			gbc.gridx = 1;
 			gbc.gridy = 8;
@@ -455,7 +445,7 @@ public class CreateReminder extends Frame {
 			//As window resizes, components stretch horizontally
 			gbc.fill = GridBagConstraints.HORIZONTAL;
 			//Add component to pane, follows constraints
-			pane.add(spinner1, gbc);
+			pane.add(remTime1, gbc);
 			
 		//And
 			and = new JLabel("and");
@@ -475,10 +465,7 @@ public class CreateReminder extends Frame {
 			pane.add(and, gbc);
 			
 		//Time Spinner 2
-			JSpinner spinner2 = new JSpinner(new SpinnerListModel(times));
-			editor = spinner2.getEditor();
-			spinnerEditor = (JSpinner.DefaultEditor)editor;
-			spinnerEditor.getTextField().setHorizontalAlignment(JTextField.LEFT);
+			JTextField remTime2 = new JTextField("HH:mm");
 			//Grid positioning
 			gbc.gridx = 1;
 			gbc.gridy = 10;
@@ -490,7 +477,7 @@ public class CreateReminder extends Frame {
 			//As window resizes, components stretch horizontally
 			gbc.fill = GridBagConstraints.HORIZONTAL;
 			//Add component to pane, follows constraints
-			pane.add(spinner2, gbc);
+			pane.add(remTime2, gbc);
 			
 		//Space
 			space = new JLabel("");
@@ -524,6 +511,76 @@ public class CreateReminder extends Frame {
 			gbc.fill = GridBagConstraints.NONE;
 			//Add component to pane, follows constraints
 			pane.add(submit, gbc);
+			
+			submit.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent ae) {
+
+					String dbName = reminderName.getText();
+					String dbDesc = description.getText();
+					String dbNumTimes = numTimes.getText();
+					String dbTime1 = remTime1.getText();
+					String dbTime2 = remTime2.getText();
+					
+					String regex = "([01]?[0-9]|2[0-3]):[0-5][0-9]";
+					String regex2 = "(0?[2-9]|1[0-9]|2[0-5])";
+					
+					Pattern p = Pattern.compile(regex);
+					Pattern p2 = Pattern.compile(regex2);
+					
+					Matcher m1 = p.matcher(dbTime1);
+					boolean match1 = m1.matches();
+					
+					Matcher m2 = p.matcher(dbTime1);
+					boolean match2 = m2.matches();
+					
+					Matcher m3 = p2.matcher(dbNumTimes);
+					boolean match3 = m3.matches();
+					
+					if (match1 && match2 && match3 && !dbTime1.isEmpty() && !dbTime2.isEmpty() && !dbName.isEmpty() && !dbNumTimes.isEmpty()) {
+	        			try {
+	        				
+		                    Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/remindersApp", "root", "password1234");
+		                    Statement statement = connection.createStatement();
+		                    
+		                    String sql0 = "CREATE DATABASE IF NOT EXISTS remindersApp";
+		                    statement.executeUpdate(sql0);
+		                    
+		            		//statement.executeUpdate("SET FOREIGN_KEY_CHECKS = 0");
+		            		//statement.executeUpdate("DROP TABLE IF Exists RangedReminders");
+		            		//statement.executeUpdate("SET FOREIGN_KEY_CHECKS = 1");
+		                    
+		                    String sql1 = "CREATE TABLE IF NOT EXISTS RangedReminders" +
+		            				"(numID INTEGER not NULL AUTO_INCREMENT," +
+		            				"reminderName VARCHAR(100) not NULL," +
+		            				"reminderDesc VARCHAR(100) not NULL," +
+		            				"reminderNumTimes INTEGER," +
+		            				"reminderTime1 TIME," +
+		            				"reminderTime2 TIME," +
+		        					"PRIMARY KEY ( numID ))";
+		            		statement.executeUpdate(sql1);
+		                    
+		                    String sql2 = "INSERT INTO RangedReminders (reminderName, reminderDesc, reminderNumTimes, reminderTime1, reminderTime2) values('" + dbName + "','" + dbDesc + "', '" + Integer.parseInt(dbNumTimes) + "', '" + dbTime1 + "', '" + dbTime2 + "')";
+		                    statement.executeUpdate(sql2);
+		                    
+		                    
+		                    connection.close();
+		                    
+		                    JComponent comp = (JComponent) ae.getSource();
+		                    Window win = SwingUtilities.getWindowAncestor(comp);
+		                    win.dispose();
+	        			}
+	        			
+		                catch (Exception e) {
+		                    e.printStackTrace();
+		                }
+	        			
+					}
+					else {
+						JOptionPane.showMessageDialog(submit, "Error!\n * Reminder must be named\n * Valid times (HH:mm) must be entered\n *Number of times must be between 2-25");
+					}
+					
+				}
+			});
 			
 		//Space
 			space2 = new JLabel("");
