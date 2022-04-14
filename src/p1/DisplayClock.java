@@ -18,11 +18,12 @@ class Dimensions {
 	final float degrees30 = degrees06 * 5;
 	final float degrees90 = degrees30 * 3;
 	 
-	int size = 200;
+	int size = 150;
 	int spacing = 10;
 	int diameter = size - 2 * spacing;
 	int cx = diameter / 2 + spacing;
 	int cy = diameter / 2 + spacing;
+
 }
 
 class DrawClock implements Clock {
@@ -30,11 +31,13 @@ class DrawClock implements Clock {
 	Dimensions dim = new Dimensions();
 	
 	public void drawClockFace(Graphics2D g) {
+		
 		g.setStroke(new BasicStroke(2));
 	    g.setColor(Color.white);
 	    g.fillOval(dim.spacing, dim.spacing, dim.diameter, dim.diameter);
 	    g.setColor(Color.black);
 	    g.drawOval(dim.spacing, dim.spacing, dim.diameter, dim.diameter);
+		
 	  
 	 }
 	
@@ -56,7 +59,7 @@ public class DisplayClock extends JPanel {
 		Dimensions dim = new Dimensions();
 		
 		setPreferredSize(new Dimension(dim.size, dim.size));
-	    setBackground(Color.BLUE);
+	    setBackground(new Color(239, 245, 243));
 	 
 	      new Timer(1000, (ActionEvent e) -> {
 	         repaint();
