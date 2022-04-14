@@ -10,31 +10,50 @@ import java.awt.Frame;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.awt.Window;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ComponentEvent;
 import java.awt.event.ComponentListener;
 import java.awt.event.WindowEvent;
+import java.sql.Connection;
+import java.sql.Date;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Locale;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JComponent;
+import javax.swing.JFormattedTextField;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JSpinner;
 import javax.swing.JTextField;
+import javax.swing.SpinnerDateModel;
 import javax.swing.SpinnerListModel;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.SwingConstants;
+import javax.swing.SwingUtilities;
 import javax.swing.border.Border;
+
 
 public class CreateReminder extends Frame {
 	private static final long serialVersionUID = 1L;
 	
 	public static void addSpecificComponentsToPane(Container pane) {
+		
 		
 		//Initializing buttons and labels
 			JButton submit;
@@ -145,15 +164,8 @@ public class CreateReminder extends Frame {
 			pane.add(time, gbc);
 		
 		//Time Spinner
-			String times[] = { "00:00", "01:00", "02:00",
-			        "03:00", "04:00", "05.00", "06.00", "07.00",
-			        "08.00", "09.00", "10.00", "11:00", "12:00", "13:00", "14:00",
-			        "15:00", "16:00", "17:00", "18:00", "19:00", "20:00", "21:00",
-			        "22:00", "23:00"};
-			JSpinner spinner = new JSpinner(new SpinnerListModel(times));
-			JComponent editor = spinner.getEditor();
-			JSpinner.DefaultEditor spinnerEditor = (JSpinner.DefaultEditor)editor;
-			spinnerEditor.getTextField().setHorizontalAlignment(JTextField.LEFT);
+			JTextField remTime = new JTextField("HH:mm");
+			
 			//Grid positioning
 			gbc.gridx = 1;
 			gbc.gridy = 6;
@@ -165,7 +177,7 @@ public class CreateReminder extends Frame {
 			//As window resizes, components stretch horizontally
 			gbc.fill = GridBagConstraints.HORIZONTAL;
 			//Add component to pane, follows constraints
-			pane.add(spinner, gbc);
+			pane.add(remTime, gbc);
 			
 			//Space
 			space = new JLabel("");
@@ -201,6 +213,63 @@ public class CreateReminder extends Frame {
 			//Add component to pane, follows constraints
 			pane.add(submit, gbc);
 			
+			submit.addActionListener(new ActionListener() {
+				public void actionPerformed(ActionEvent ae) {
+
+					String dbName = reminderName.getText();
+					String dbDesc = description.getText();
+					String dbTime = remTime.getText();
+					
+					String regex = "([01]?[0-9]|2[0-3]):[0-5][0-9]";
+					Pattern p = Pattern.compile(regex);
+					
+					Matcher m = p.matcher(dbTime);
+					boolean match = m.matches();
+					
+					if (match && !dbTime.isEmpty() && !dbName.isEmpty()) {
+	        			try {
+	        				
+		                    Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/remindersApp", "root", "password1234");
+		                    Statement statement = connection.createStatement();
+		                    
+		                    String sql0 = "CREATE DATABASE IF NOT EXISTS remindersApp";
+		                    statement.executeUpdate(sql0);
+		                    
+		            		//statement.executeUpdate("SET FOREIGN_KEY_CHECKS = 0");
+		            		//statement.executeUpdate("DROP TABLE IF Exists SpecificReminders");
+		            		//statement.executeUpdate("SET FOREIGN_KEY_CHECKS = 1");
+		                    
+		                    String sql1 = "CREATE TABLE IF NOT EXISTS SpecificReminders" +
+		            				"(numID INTEGER not NULL AUTO_INCREMENT," +
+		            				"reminderName VARCHAR(100) not NULL," +
+		            				"reminderDesc VARCHAR(100) not NULL," +
+		            				"reminderTime TIME," +
+		        					"PRIMARY KEY ( numID ))";
+		            		statement.executeUpdate(sql1);
+		                    
+		                    String sql2 = "INSERT INTO SpecificReminders (reminderName, reminderDesc, reminderTime) values('" + dbName + "','" + dbDesc + "','" + dbTime + "')";
+		                    statement.executeUpdate(sql2);
+		                    
+		                    
+		                    connection.close();
+		                    
+		                    JComponent comp = (JComponent) ae.getSource();
+		                    Window win = SwingUtilities.getWindowAncestor(comp);
+		                    win.dispose();
+	        			}
+	        			
+		                catch (Exception e) {
+		                    e.printStackTrace();
+		                }
+	        			
+					}
+					else {
+						JOptionPane.showMessageDialog(submit, "Error: reminder must be named and/or valid time must be entered!");
+					}
+					
+				}
+			});
+			
 		//Space
 			space2 = new JLabel("");
 			//Grid positioning
@@ -215,6 +284,8 @@ public class CreateReminder extends Frame {
 			gbc.fill = GridBagConstraints.BOTH;
 			//Add component to pane, follows constraints
 			pane.add(space2, gbc);
+			
+			
 		
 	}
 	
@@ -471,6 +542,7 @@ public class CreateReminder extends Frame {
 		
 	}
 
+	/*
 	public static void addWaterPresetComponentsToPane(Container pane) {
 	
 	//Initializing buttons and labels
@@ -978,5 +1050,7 @@ public class CreateReminder extends Frame {
 		pane.add(space2, gbc);
 	
 	}
-
+	*/
+	
 }
+
