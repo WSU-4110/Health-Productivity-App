@@ -9,7 +9,8 @@ import java.awt.event.WindowEvent;
 import javax.swing.*;  
 //import java.util.*;
 
-public class SignInDash extends Frame {
+
+public class SignInDash extends JFrame {
 		
 	/**
 	 * 
@@ -339,6 +340,22 @@ public class SignInDash extends Frame {
 	
 	// Main - where we call initGUI
 	public static void main(String[] args) {
+				
+		/* EventQueue.invokeLater(new Runnable()
+        {
+            public void run()
+            {
+                try
+                {
+                    SignInDash frame = new SignInDash();
+                    frame.setVisible(true);
+                }
+                catch (Exception e)
+                {
+                    e.printStackTrace();
+                }
+            }
+        }); */
 		
 		initGUI();
 		
