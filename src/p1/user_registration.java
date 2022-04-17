@@ -29,6 +29,8 @@ public class user_registration extends JFrame
     private JTextField mob;
     private JPasswordField passwordField;
     private JButton btnNewButton;
+    private JButton registerButton;
+    
 
     /**
      * Launch the application.
@@ -184,7 +186,22 @@ public class user_registration extends JFrame
             }
         });
         btnNewButton.setFont(new Font("Times New Roman", Font.PLAIN, 22));
-        btnNewButton.setBounds(399, 447, 259, 74);
+        btnNewButton.setBounds(499, 447, 259, 74);
         contentPane.add(btnNewButton);
+        
+        registerButton = new JButton("Back");
+        registerButton.addActionListener(new ActionListener()
+        {
+            public void actionPerformed(ActionEvent e)
+            {
+            	dispose();
+                login_window ah = new login_window();
+                ah.setVisible(true); 
+            }
+        });
+        
+        registerButton.setFont(new Font("Times New Roman", Font.PLAIN, 22));
+        registerButton.setBounds(199, 447, 259, 74);
+        contentPane.add(registerButton);
     }
 }
