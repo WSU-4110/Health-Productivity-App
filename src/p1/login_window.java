@@ -125,10 +125,10 @@ public class login_window extends JFrame
                 String password = passwordField.getText();
                 try
                 {
-                    Connection connection = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/login_test", "root", "password1234");
+                    Connection connection = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/healthApp", "root", "password1234");
 
                     PreparedStatement st = (PreparedStatement) connection
-                        .prepareStatement("SELECT Email, password from account where Email=? and password=?");
+                        .prepareStatement("SELECT email, password from users where email=? and password=?");
 
                     st.setString(1, userName);
                     st.setString(2, password);
