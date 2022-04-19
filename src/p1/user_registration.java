@@ -161,9 +161,9 @@ public class user_registration extends JFrame
 
                 try
                 {
-                    Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/login_test", "root", "password1234");
+                    Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/healthApp", "root", "password1234");
 
-                    String query = "INSERT INTO account values('" + firstName + "','" + lastName + "','" + userName + "','" +
+                    String query = "INSERT INTO users values('" + firstName + "','" + lastName + "','" + userName + "','" +
                         password + "','" + emailId + "','" + mobileNumber + "')";
 
                     Statement sta = connection.createStatement();
