@@ -229,10 +229,10 @@ public class CreateReminder extends Frame {
 					if (match && !dbTime.isEmpty() && !dbName.isEmpty()) {
 	        			try {
 	        				
-		                    Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/remindersApp", "root", "password1234");
+		                    Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/healthapp", "root", "password1234");
 		                    Statement statement = connection.createStatement();
 		                    
-		                    String sql0 = "CREATE DATABASE IF NOT EXISTS remindersApp";
+		                    String sql0 = "CREATE DATABASE IF NOT EXISTS healthapp";
 		                    statement.executeUpdate(sql0);
 		                    
 		            		//statement.executeUpdate("SET FOREIGN_KEY_CHECKS = 0");
@@ -242,8 +242,8 @@ public class CreateReminder extends Frame {
 		                    String sql1 = "CREATE TABLE IF NOT EXISTS SpecificReminders" +
 		            				"(numID INTEGER not NULL AUTO_INCREMENT," +
 		            				"reminderName VARCHAR(100) not NULL," +
-		            				"reminderDesc VARCHAR(100) not NULL," +
-		            				"reminderTime TIME," +
+		            				"reminderDesc VARCHAR(100)," +
+		            				"reminderTime TIME not NULL," +
 		        					"PRIMARY KEY ( numID ))";
 		            		statement.executeUpdate(sql1);
 		                    
@@ -264,7 +264,7 @@ public class CreateReminder extends Frame {
 	        			
 					}
 					else {
-						JOptionPane.showMessageDialog(submit, "Error!/n * Reminder must be named/n * Valid time (HH:mm) must be entered");
+						JOptionPane.showMessageDialog(submit, "There has been an error! Potential reasons:\n * Reminder must be named\n * Valid military time (HH:mm) must be entered");
 					}
 					
 				}
@@ -433,7 +433,7 @@ public class CreateReminder extends Frame {
 			pane.add(hours, gbc);
 			
 		//Time Spinner 1
-			JTextField remTime1 = new JTextField("HH:mm");
+			JTextField remTime1 = new JTextField("HH:00");
 			//Grid positioning
 			gbc.gridx = 1;
 			gbc.gridy = 8;
@@ -465,7 +465,7 @@ public class CreateReminder extends Frame {
 			pane.add(and, gbc);
 			
 		//Time Spinner 2
-			JTextField remTime2 = new JTextField("HH:mm");
+			JTextField remTime2 = new JTextField("HH:00");
 			//Grid positioning
 			gbc.gridx = 1;
 			gbc.gridy = 10;
@@ -521,7 +521,7 @@ public class CreateReminder extends Frame {
 					String dbTime1 = remTime1.getText();
 					String dbTime2 = remTime2.getText();
 					
-					String regex = "([01]?[0-9]|2[0-3]):[0-5][0-9]";
+					String regex = "([01]?[0-9]|2[0-3]):[0][0]";
 					String regex2 = "(0?[2-9]|1[0-9]|2[0-5])";
 					
 					Pattern p = Pattern.compile(regex);
@@ -530,19 +530,39 @@ public class CreateReminder extends Frame {
 					Matcher m1 = p.matcher(dbTime1);
 					boolean match1 = m1.matches();
 					
-					Matcher m2 = p.matcher(dbTime1);
+					Matcher m2 = p.matcher(dbTime2);
 					boolean match2 = m2.matches();
+					
+					boolean flag = false;
+					
+					if (match1 && match2) {
+						String[] token = dbTime1.split(":");
+						String time1 = token[0];
+						int t1 = Integer.parseInt(time1);
+						
+						String[] token2 = dbTime2.split(":");
+						String time2 = token2[0];
+						int t2 = Integer.parseInt(time2);
+						
+						if (t1 > t2) {
+							flag = true;
+						}
+						
+						if (t1 == t2) {
+							flag = true;
+						}
+					}
 					
 					Matcher m3 = p2.matcher(dbNumTimes);
 					boolean match3 = m3.matches();
-					
-					if (match1 && match2 && match3 && !dbTime1.isEmpty() && !dbTime2.isEmpty() && !dbName.isEmpty() && !dbNumTimes.isEmpty()) {
+	
+					if (match1 && match2 && match3 && !flag && !dbTime1.isEmpty() && !dbTime2.isEmpty() && !dbName.isEmpty() && !dbNumTimes.isEmpty()) {
 	        			try {
-	        				
-		                    Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/remindersApp", "root", "password1234");
+	        				       				
+		                    Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/healthApp", "root", "password1234");
 		                    Statement statement = connection.createStatement();
 		                    
-		                    String sql0 = "CREATE DATABASE IF NOT EXISTS remindersApp";
+		                    String sql0 = "CREATE DATABASE IF NOT EXISTS healthApp";
 		                    statement.executeUpdate(sql0);
 		                    
 		            		//statement.executeUpdate("SET FOREIGN_KEY_CHECKS = 0");
@@ -552,10 +572,10 @@ public class CreateReminder extends Frame {
 		                    String sql1 = "CREATE TABLE IF NOT EXISTS RangedReminders" +
 		            				"(numID INTEGER not NULL AUTO_INCREMENT," +
 		            				"reminderName VARCHAR(100) not NULL," +
-		            				"reminderDesc VARCHAR(100) not NULL," +
-		            				"reminderNumTimes INTEGER," +
-		            				"reminderTime1 TIME," +
-		            				"reminderTime2 TIME," +
+		            				"reminderDesc VARCHAR(100)," +
+		            				"reminderNumTimes INTEGER not NULL," +
+		            				"reminderTime1 TIME not NULL," +
+		            				"reminderTime2 TIME not NULL," +
 		        					"PRIMARY KEY ( numID ))";
 		            		statement.executeUpdate(sql1);
 		                    
@@ -576,7 +596,7 @@ public class CreateReminder extends Frame {
 	        			
 					}
 					else {
-						JOptionPane.showMessageDialog(submit, "Error!\n * Reminder must be named\n * Valid times (HH:mm) must be entered\n *Number of times must be between 2-25");
+						JOptionPane.showMessageDialog(submit, "There has been an error! Potential reasons:\n * Reminder must be named\n * Valid military times (HH:00) must be entered\n * Number of times must be between 2-25\n * First time must be earlier than second time\n * First and second time can not be the same time");
 					}
 					
 				}
