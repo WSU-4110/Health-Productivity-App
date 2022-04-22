@@ -16,7 +16,7 @@ public class EditReminder {
 	public static void addComponentToPane(Container pane)
 	{
 		// initializing buttons and labels
-		JButton submit;
+		JButton submit, decline;
 		JLabel title, name;
 		JTextField reminderName;
 		
@@ -93,5 +93,22 @@ public class EditReminder {
 		gbc.fill = GridBagConstraints.HORIZONTAL;
 		//Add component to pane, follows constraints
 		pane.add(submit, gbc);
+		
+		decline = new JButton("Decline");
+		decline.setFont(new Font("Helvetica", Font.BOLD, 13));
+		decline.setForeground(Color.WHITE);
+		decline.setBackground(new Color(91,146,121));
+		//Grid positioning
+		gbc.gridx = 0;
+		gbc.gridy = 3;
+		//Internal padding
+		gbc.ipady = 1;
+		//Spacing
+		gbc.weightx = 0.2;
+		gbc.weighty = 0;
+		//As window resizes, components stretch horizontally
+		gbc.fill = GridBagConstraints.HORIZONTAL;
+		//Add component to pane, follows constraints
+		pane.add(decline, gbc);
 	}
 }
