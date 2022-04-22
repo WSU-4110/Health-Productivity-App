@@ -161,6 +161,7 @@ public class user_registration extends JFrame
                 
                 try
                 {
+
                     Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/healthapp", "root", "password1234");
                     Statement statement = connection.createStatement();
                     
@@ -186,6 +187,7 @@ public class user_registration extends JFrame
                     String query = "INSERT INTO users (firstName, lastName, userName, password, email, mobileNumber) values('" + firstName + "','" + lastName + "','" + userName + "','" + password + "','" + emailId + "','" + mobileNumber + "')";
 
                     int x = statement.executeUpdate(query);
+
                     if (x == 0)
                     {
                         JOptionPane.showMessageDialog(btnNewButton, "User already exists");
