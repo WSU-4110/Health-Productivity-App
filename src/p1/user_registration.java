@@ -158,16 +158,36 @@ public class user_registration extends JFrame
                 {
                     JOptionPane.showMessageDialog(btnNewButton, "Enter a valid phone number");
                 }
-
+                
                 try
                 {
-                    Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/healthApp", "root", "password1234");
 
-                    String query = "INSERT INTO users values('" + firstName + "','" + lastName + "','" + userName + "','" +
-                        password + "','" + emailId + "','" + mobileNumber + "')";
+                    Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/healthapp", "root", "password1234");
+                    Statement statement = connection.createStatement();
+                    
+                    
+                    String sql0 = "CREATE DATABASE IF NOT EXISTS healthapp";
+                    statement.executeUpdate(sql0);
+                    
+            		//statement.executeUpdate("SET FOREIGN_KEY_CHECKS = 0");
+            		//statement.executeUpdate("DROP TABLE IF Exists users");
+            		//statement.executeUpdate("SET FOREIGN_KEY_CHECKS = 1");
+                    
+                    String sql1 = "CREATE TABLE IF NOT EXISTS users" +
+            				"(numID INTEGER not NULL AUTO_INCREMENT," +
+            				"firstName VARCHAR(100)," +
+            				"lastName VARCHAR(100)," +
+            				"userName VARCHAR(100) not NULL," +
+            				"password VARCHAR(100) not NULL," +
+            				"email VARCHAR(100) not NULL," +
+            				"mobileNumber VARCHAR(100)," +
+        					"PRIMARY KEY ( numID ))";
+            		statement.executeUpdate(sql1);
+                    
+                    String query = "INSERT INTO users (firstName, lastName, userName, password, email, mobileNumber) values('" + firstName + "','" + lastName + "','" + userName + "','" + password + "','" + emailId + "','" + mobileNumber + "')";
 
-                    Statement sta = connection.createStatement();
-                    int x = sta.executeUpdate(query);
+                    int x = statement.executeUpdate(query);
+
                     if (x == 0)
                     {
                         JOptionPane.showMessageDialog(btnNewButton, "User already exists");

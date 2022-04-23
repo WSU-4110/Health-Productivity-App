@@ -279,9 +279,8 @@ public class SignInDash extends JFrame {
 		//Add component to pane, follows constraints
 		pane.add(placeHolder, gbc);
 		
-		
 		//Clock Title
-		label4 = new JLabel("Clock", SwingConstants.CENTER);
+		label4 = new JLabel("Date and Time", SwingConstants.CENTER);
 		label4.setFont(new Font("Helvetica", Font.BOLD, 15));
 		label4.setForeground(new Color(30, 47, 39));
 		//Grid positioning
