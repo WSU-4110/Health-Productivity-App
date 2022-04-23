@@ -26,7 +26,7 @@ import javax.swing.SwingUtilities;
 
 public class SpecificRem extends Layout {
 	
-	public void addComponentsToPane(Container pane) {
+	public void addComponentsToPane(Container pane) throws Exception {
 			
 		pane.setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
 		pane.setLayout(new GridBagLayout());  
@@ -338,7 +338,7 @@ public class SpecificRem extends Layout {
 	}
 	
 	
-	public static void addRangedComponentsToPane(Container pane) {
+	public static void addRangedComponentsToPane(Container pane) throws Exception {
 		
 		//Initializing buttons and labels
 			JButton submit;

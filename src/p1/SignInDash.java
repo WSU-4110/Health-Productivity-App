@@ -14,7 +14,7 @@ import java.util.*;
 public class SignInDash extends Layout {
 
 	//Where we set up GUI components in Sign In Dashboard
-	public static void addComponentsToPane(Container pane) {
+	public static void addComponentsToPane(Container pane) throws Exception {
 	
 		//Set component orientation - left to right
 	    pane.setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
@@ -104,9 +104,7 @@ public class SignInDash extends Layout {
 		
 		//Create Specific Time Reminder button
 		JButton specific = new JButton("+ Create Specific Time Reminder");
-		specific.setFont(new Font("Helvetica", Font.BOLD, 13));
-		specific.setForeground(Color.WHITE);
-		specific.setBackground(new Color(91,146,121));
+		setButtonColors(specific);
 		
 		//GBC Values	
 		gbc = gbcSetValues(
@@ -135,11 +133,16 @@ public class SignInDash extends Layout {
 						
 						JFrame createReminder = new JFrame("Create Specific Time Reminder");
 						createReminder.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE); 
-						createReminder.getContentPane().setBackground(new Color(239, 245, 243));
+						setBackgroundColor(createReminder);
 						//CreateReminder.addSpecificComponentsToPane(createReminder.getContentPane());  
 			
 						SpecificRem specificReminder = new SpecificRem();
-						specificReminder.addComponentsToPane(createReminder.getContentPane());
+						try {
+							specificReminder.addComponentsToPane(createReminder.getContentPane());
+						} catch (Exception e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
 
 						createReminder.setMinimumSize(new Dimension(800, 490));
 						createReminder.pack();
@@ -151,9 +154,7 @@ public class SignInDash extends Layout {
 		 
 		//Create Ranged Reminder button
 		JButton range = new JButton("+ Create Ranged Time Reminder");
-		range.setFont(new Font("Helvetica", Font.BOLD, 13));
-		range.setForeground(Color.WHITE);
-		range.setBackground(new Color(91,146,121));
+		setButtonColors(range);
 		
 		//GBC Values	
 		gbc = gbcSetValues(
@@ -180,7 +181,7 @@ public class SignInDash extends Layout {
 				 new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						JFrame createReminder = new JFrame("Create Ranged Time Reminder");
-						createReminder.getContentPane().setBackground(new Color(239, 245, 243));
+						setBackgroundColor(createReminder);
 						CreateReminder.addRangedComponentsToPane(createReminder.getContentPane()); 
 						createReminder.setMinimumSize(new Dimension(800, 490));
 						createReminder.pack();
@@ -219,9 +220,7 @@ public class SignInDash extends Layout {
 		 
 		//Preset button 1
 		JButton water = new JButton("+ Drink Water");
-		water.setFont(new Font("Helvetica", Font.BOLD, 13));
-		water.setForeground(Color.WHITE);
-		water.setBackground(new Color(91,146,121));
+		setButtonColors(water);
 		
 		//GBC Values
 		gbc.gridheight = 1;
@@ -251,6 +250,7 @@ public class SignInDash extends Layout {
 					public void actionPerformed(ActionEvent e) {
 						JFrame createReminder = new JFrame("Create Water Reminder");
 						createReminder.getContentPane().setBackground(new Color(239, 245, 243));
+						setBackgroundColor(createReminder);
 						drinkWater test1 = new drinkWater();
 						test1.addComponentToPane(createReminder.getContentPane()); 
 						createReminder.setMinimumSize(new Dimension(800, 490));
@@ -263,9 +263,7 @@ public class SignInDash extends Layout {
 		
 		//Preset button 2
 		JButton standing = new JButton("+ Standing Break");
-		standing.setFont(new Font("Helvetica", Font.BOLD, 13));
-		standing.setForeground(Color.WHITE);
-		standing.setBackground(new Color(91,146,121));
+		setButtonColors(standing);
 		
 		//GBC Values	
 		gbc.gridheight = 2;
@@ -294,7 +292,7 @@ public class SignInDash extends Layout {
 				 new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						JFrame createReminder = new JFrame("Create Ranged Time Reminder");
-						createReminder.getContentPane().setBackground(new Color(239, 245, 243));
+						setBackgroundColor(createReminder);
 						standingBreak test2 = new standingBreak();
 						test2.addComponentToPane(createReminder.getContentPane());
 						createReminder.setMinimumSize(new Dimension(800, 490));
@@ -366,9 +364,7 @@ public class SignInDash extends Layout {
 		
 		//Reminder Placeholder
 		JButton placeHolder = new JButton("Test Reminder");
-		placeHolder.setFont(new Font("Helvetica", Font.BOLD, 13));
-		placeHolder.setForeground(Color.WHITE);
-		placeHolder.setBackground(new Color(91,146,121));
+		setButtonColors(placeHolder);
 		
 		//GBC Values	
 		gbc = gbcSetValues(
@@ -480,9 +476,7 @@ public class SignInDash extends Layout {
 		
 		// edit button
 		JButton Edit = new JButton("Edit");
-		Edit.setFont(new Font("Helvetica", Font.BOLD, 13));
-		Edit.setForeground(Color.WHITE);
-		Edit.setBackground(new Color(91,146,121));
+		setButtonColors(Edit);
 		
 		//GBC Values
 		gbc.gridheight = 1;
@@ -509,7 +503,9 @@ public class SignInDash extends Layout {
 				 new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						JFrame editReminder = new JFrame("Edit Reminder");
-						editReminder.getContentPane().setBackground(backgroundColor);
+						editReminder.getContentPane().setBackground(new Color(239, 245, 243));
+						setBackgroundColor(editReminder);
+						
 						EditReminder test3 = new EditReminder();
 						test3.addComponentToPane(editReminder.getContentPane()); 
 						editReminder.setMinimumSize(new Dimension(800, 490));
@@ -523,7 +519,7 @@ public class SignInDash extends Layout {
 	}  
 	
 	//Initializing GUI
-	public static void initGUI() {
+	public static void initGUI() throws Exception {
 		
 		//Creates Reminder frame
 		JFrame dash = new JFrame("Reminder");
@@ -532,7 +528,9 @@ public class SignInDash extends Layout {
 		addComponentsToPane(dash.getContentPane());  
 		
 		//Sets background color of frame
-		dash.getContentPane().setBackground(backgroundColor);
+		//dash.getContentPane().setBackground(backgroundColor);
+		
+		setBackgroundColor(dash);
 		
 		//When user closes the frame, the program quits
 		dash.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); 
@@ -550,7 +548,7 @@ public class SignInDash extends Layout {
 	}
 	
 	// Main - where we call initGUI
-	public static void main(String[] args) {
+	public static void main(String[] args) throws Exception {
 		
 		initGUI();
 		

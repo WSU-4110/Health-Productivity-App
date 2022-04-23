@@ -139,7 +139,12 @@ public class login_window extends JFrame
                     {
                         dispose();
                         SignInDash ah = new SignInDash();
-                        ah.main(null);
+                        try {
+							ah.main(null);
+						} catch (Exception e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
                         JOptionPane.showMessageDialog(btnNewButton, "You have successfully logged in");
                     }
                     else

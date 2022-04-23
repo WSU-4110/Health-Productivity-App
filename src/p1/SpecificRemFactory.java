@@ -11,7 +11,7 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
-public class SpecificRemFactory implements CreateReminderInterface {
+public class SpecificRemFactory extends Layout implements CreateReminderInterface {
 	
 	//Header
 	public JLabel reminderHeader() {
