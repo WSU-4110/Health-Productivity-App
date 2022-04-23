@@ -275,6 +275,7 @@ public class SignInDash extends JFrame {
 		
 		
 		//Clock
+		
 		label4 = new JLabel("Clock", SwingConstants.CENTER);
 		label4.setFont(new Font("Helvetica", Font.BOLD, 15));
 		label4.setForeground(new Color(30, 47, 39));
@@ -332,7 +333,7 @@ public class SignInDash extends JFrame {
 						JFrame editReminder = new JFrame("Edit Reminder");
 						editReminder.getContentPane().setBackground(new Color(239, 245, 243));
 						EditReminder test3 = new EditReminder();
-						test3.addComponentToPane(editReminder.getContentPane()); 
+						test3.addComponentToPane(editReminder.getContentPane()); //editReminder.getContentPane()
 						editReminder.setMinimumSize(new Dimension(800, 430));
 						editReminder.pack();
 						editReminder.setLocationRelativeTo(null);

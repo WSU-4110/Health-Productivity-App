@@ -13,6 +13,20 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
 public class EditReminder {
+	public static GridBagConstraints Title(GridBagConstraints gbc) {
+		//Grid positioning
+		gbc.gridx = 1;
+		gbc.gridy = 0;
+		//Internal padding
+		gbc.ipady = 5;
+		//Spacing
+		gbc.weightx = 0.2;
+		gbc.weighty = 0;
+		//As window resizes, components stretch horizontally
+		gbc.fill = GridBagConstraints.HORIZONTAL;
+		return gbc;
+	}
+	
 	public static void addComponentToPane(Container pane)
 	{
 		// initializing buttons and labels
@@ -26,19 +40,12 @@ public class EditReminder {
 		gbc.insets = new Insets (2, 5, 2, 5);	
 		
 		//Create Ranged Time Reminders Title
+		
 		title = new JLabel("Which reminder would you like to edit?", SwingConstants.CENTER);
 		title.setFont(new Font("Helvetica", Font.BOLD, 25));
 		title.setForeground(new Color(20, 31, 26));
-		//Grid positioning
-		gbc.gridx = 1;
-		gbc.gridy = 0;
-		//Internal padding
-		gbc.ipady = 5;
-		//Spacing
-		gbc.weightx = 0.2;
-		gbc.weighty = 0;
-		//As window resizes, components stretch horizontally
-		gbc.fill = GridBagConstraints.HORIZONTAL;
+		gbc = Title(gbc);
+
 		//Add component to pane, follows constraints
 		pane.add(title, gbc);
 		
