@@ -135,7 +135,7 @@ public class SignInDash extends JFrame {
 		//Add component to pane, follows constraints
 		pane.add(range, gbc);
 			
-		 range.addActionListener(
+		range.addActionListener(
 				 new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						JFrame createReminder = new JFrame("Create Ranged Time Reminder");
@@ -244,6 +244,18 @@ public class SignInDash extends JFrame {
 		//Spacing
 		gbc.weightx = 0.2;
 		gbc.weighty = 0;
+		
+		account.addActionListener(
+				 new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						
+						//dispose();
+						accountSettings a1 = new accountSettings();
+						a1.main(null);
+				}
+			}
+		);
+		
 		//Add component to pane, follows constraints
 		pane.add(account, gbc);
 		
@@ -260,6 +272,18 @@ public class SignInDash extends JFrame {
 		//Spacing
 		gbc.weightx = 0.2;
 		gbc.weighty = 0;
+		
+		signOut.addActionListener(
+				 new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						
+						//dispose();
+						login_window a1 = new login_window();
+						a1.main(null);
+				}
+			}
+		);
+		
 		//Add component to pane, follows constraints
 		pane.add(signOut, gbc);
 		

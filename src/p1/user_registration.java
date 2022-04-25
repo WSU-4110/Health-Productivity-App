@@ -1,5 +1,6 @@
 package p1;
 
+import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.Toolkit;
@@ -158,36 +159,16 @@ public class user_registration extends JFrame
                 {
                     JOptionPane.showMessageDialog(btnNewButton, "Enter a valid phone number");
                 }
-                
+
                 try
                 {
+                    Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/healthApp", "root", "password1234");
 
-                    Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/healthapp", "root", "password1234");
-                    Statement statement = connection.createStatement();
-                    
-                    
-                    String sql0 = "CREATE DATABASE IF NOT EXISTS healthapp";
-                    statement.executeUpdate(sql0);
-                    
-            		//statement.executeUpdate("SET FOREIGN_KEY_CHECKS = 0");
-            		//statement.executeUpdate("DROP TABLE IF Exists users");
-            		//statement.executeUpdate("SET FOREIGN_KEY_CHECKS = 1");
-                    
-                    String sql1 = "CREATE TABLE IF NOT EXISTS users" +
-            				"(numID INTEGER not NULL AUTO_INCREMENT," +
-            				"firstName VARCHAR(100)," +
-            				"lastName VARCHAR(100)," +
-            				"userName VARCHAR(100) not NULL," +
-            				"password VARCHAR(100) not NULL," +
-            				"email VARCHAR(100) not NULL," +
-            				"mobileNumber VARCHAR(100)," +
-        					"PRIMARY KEY ( numID ))";
-            		statement.executeUpdate(sql1);
-                    
-                    String query = "INSERT INTO users (firstName, lastName, userName, password, email, mobileNumber) values('" + firstName + "','" + lastName + "','" + userName + "','" + password + "','" + emailId + "','" + mobileNumber + "')";
+                    String query = "INSERT INTO users values('" + firstName + "','" + lastName + "','" + userName + "','" +
+                        password + "','" + emailId + "','" + mobileNumber + "')";
 
-                    int x = statement.executeUpdate(query);
-
+                    Statement sta = connection.createStatement();
+                    int x = sta.executeUpdate(query);
                     if (x == 0)
                     {
                         JOptionPane.showMessageDialog(btnNewButton, "User already exists");
@@ -207,6 +188,8 @@ public class user_registration extends JFrame
         });
         btnNewButton.setFont(new Font("Times New Roman", Font.PLAIN, 22));
         btnNewButton.setBounds(499, 447, 259, 74);
+        btnNewButton.setForeground(Color.WHITE);
+        btnNewButton.setBackground(new Color(91,146,121));
         contentPane.add(btnNewButton);
         
         registerButton = new JButton("Back");
@@ -222,6 +205,8 @@ public class user_registration extends JFrame
         
         registerButton.setFont(new Font("Times New Roman", Font.PLAIN, 22));
         registerButton.setBounds(199, 447, 259, 74);
+        registerButton.setForeground(Color.WHITE);
+        registerButton.setBackground(new Color(91,146,121));
         contentPane.add(registerButton);
     }
 }
