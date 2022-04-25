@@ -36,6 +36,27 @@ class ClockTesting {
 		CheckTime ct = new CheckTime();
 		String time = ct.getTime();
 		System.out.println(time);
+		//"HH:mm:ss"
+		int[] timeArr = new int[6];
+		int j = 0;
+		for(int i = 0; i < time.length(); i++) {
+			if(time.charAt(i) >= 48 && time.charAt(i) <= 57) {
+				timeArr[j] = time.charAt(i) - 48;
+				//System.out.print(timeArr[j]);
+				j++;
+				//System.out.print(j);
+			}
+			else {
+				System.out.println(time.charAt(i));
+			}
+			
+		}
+		for(int i = 0; i < 6; i++) {
+			if(i % 2 == 0) {
+				System.out.print(":");
+			}
+			System.out.print(timeArr[i]);
+		}
 		//fail("Not yet implemented");
 	}
 	
