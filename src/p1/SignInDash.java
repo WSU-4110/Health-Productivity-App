@@ -176,7 +176,7 @@ public class SignInDash extends Layout {
 		//Add component to pane, follows constraints
 		pane.add(range, gbc);
 			
-		 range.addActionListener(
+		range.addActionListener(
 				 new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						JFrame createReminder = new JFrame("Create Ranged Time Reminder");
@@ -313,7 +313,6 @@ public class SignInDash extends Layout {
 		
 		//GBC Values	
 		gbc.gridheight = 1;
-		
 		gbc = gbcSetValues(
 				//Constraint	
 				gbc, 
@@ -330,6 +329,17 @@ public class SignInDash extends Layout {
 				//Direction AKA "HORIZONTAL" or "BOTH"
 				""
 				);
+		
+		account.addActionListener(
+				 new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						
+						//dispose();
+						accountSettings a1 = new accountSettings();
+						a1.main(null);
+				}
+			}
+		);
 
 		//Add component to pane, follows constraints
 		pane.add(account, gbc);
@@ -343,7 +353,6 @@ public class SignInDash extends Layout {
 		
 		//GBC Values
 		gbc.gridheight = 1;
-		
 		gbc = gbcSetValues(
 				//Constraint	
 				gbc, 
@@ -360,7 +369,18 @@ public class SignInDash extends Layout {
 				//Direction AKA "HORIZONTAL" or "BOTH"
 				""
 				);
-
+		
+		signOut.addActionListener(
+				 new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						
+						//dispose();
+						login_window a1 = new login_window();
+						a1.main(null);
+				}
+			}
+		);
+		
 		//Add component to pane, follows constraints
 		pane.add(signOut, gbc);
 		
