@@ -1,5 +1,6 @@
 package p1;
 
+import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.Toolkit;
@@ -161,9 +162,9 @@ public class user_registration extends JFrame
 
                 try
                 {
-                    Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/login_test", "root", "password1234");
+                    Connection connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/healthApp", "root", "password1234");
 
-                    String query = "INSERT INTO account values('" + firstName + "','" + lastName + "','" + userName + "','" +
+                    String query = "INSERT INTO users values('" + firstName + "','" + lastName + "','" + userName + "','" +
                         password + "','" + emailId + "','" + mobileNumber + "')";
 
                     Statement sta = connection.createStatement();
@@ -187,6 +188,8 @@ public class user_registration extends JFrame
         });
         btnNewButton.setFont(new Font("Times New Roman", Font.PLAIN, 22));
         btnNewButton.setBounds(499, 447, 259, 74);
+        btnNewButton.setForeground(Color.WHITE);
+        btnNewButton.setBackground(new Color(91,146,121));
         contentPane.add(btnNewButton);
         
         registerButton = new JButton("Back");
@@ -202,6 +205,8 @@ public class user_registration extends JFrame
         
         registerButton.setFont(new Font("Times New Roman", Font.PLAIN, 22));
         registerButton.setBounds(199, 447, 259, 74);
+        registerButton.setForeground(Color.WHITE);
+        registerButton.setBackground(new Color(91,146,121));
         contentPane.add(registerButton);
     }
 }

@@ -11,11 +11,13 @@ import java.time.LocalTime;
 
 //dimensions
 class Dimensions {
+	
 	int size = 200;
 	int spacing = 10;
 	int diameter = size - 2 * spacing;
 	int cx = diameter / 2 + spacing;
 	int cy = diameter / 2 + spacing;
+
 }
 
 public class DisplayClock extends JPanel {
@@ -33,11 +35,13 @@ public class DisplayClock extends JPanel {
 	}
 
 	public Graphics2D drawClockFace(Graphics2D g) {
+
 		g.setStroke(new BasicStroke(2));
 	    g.setColor(Color.white);
 	    g.fillOval(dim.spacing, dim.spacing, dim.diameter, dim.diameter);
 	    g.setColor(Color.black);
 	    g.drawOval(dim.spacing, dim.spacing, dim.diameter, dim.diameter);
+
 	    
 	    return g;
 	 }
@@ -57,7 +61,7 @@ public class DisplayClock extends JPanel {
 		Dimensions dim = new Dimensions();
 		
 		setPreferredSize(new Dimension(dim.size, dim.size));
-	    setBackground(Color.BLUE);
+	    setBackground(new Color(239, 245, 243));
 	 
 	      new Timer(1000, (ActionEvent e) -> {
 	         repaint();

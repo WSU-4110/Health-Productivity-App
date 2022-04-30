@@ -1,221 +1,286 @@
 package p1;
 
 import java.awt.Color;
-import java.awt.Component;
 import java.awt.ComponentOrientation;
 import java.awt.Container;
-import java.awt.Dimension;
 import java.awt.Font;
-import java.awt.Frame;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
 import java.awt.Window;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.ComponentEvent;
-import java.awt.event.ComponentListener;
-import java.awt.event.WindowEvent;
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
 import java.sql.Statement;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Locale;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import javax.swing.BorderFactory;
-import javax.swing.Box;
-import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JComponent;
-import javax.swing.JFormattedTextField;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
-import javax.swing.JSpinner;
 import javax.swing.JTextField;
-import javax.swing.SpinnerDateModel;
-import javax.swing.SpinnerListModel;
-import javax.swing.SpinnerNumberModel;
 import javax.swing.SwingConstants;
 import javax.swing.SwingUtilities;
-import javax.swing.border.Border;
 
-
-public class CreateReminder extends Frame {
-	private static final long serialVersionUID = 1L;
+public class SpecificRem extends Layout {
 	
-	public static void addSpecificComponentsToPane(Container pane) {
+	public void addComponentsToPane(Container pane) {
+			
+		pane.setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
+		pane.setLayout(new GridBagLayout());  
+			
+		GridBagConstraints gbc = new GridBagConstraints(); 
+		gbc.insets = new Insets (2, 5, 2, 5);
 		
+		SpecificRemFactory SpecificReminder = new SpecificRemFactory();
 		
-		//Initializing buttons and labels
-			JButton submit;
-			JLabel title, name, desc, time, space, space2;
-			JTextField reminderName, description;
+		//Specific Reminder Header
+			JLabel header = SpecificReminder.reminderHeader();
+			
+			//GBC Values	
+			gbc = gbcSetValues(
+					//Constraint	
+					gbc, 
 					
-			pane.setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
-			pane.setLayout(new GridBagLayout());  
-			GridBagConstraints gbc = new GridBagConstraints(); 
-			gbc.insets = new Insets (2, 5, 2, 5);	
+					//Grid X, Grid Y
+					1, 0, 
+					
+					//Internal Padding Y
+					5, 
+					
+					//Weight X, Weight Y
+					0.2, 0,
+					
+					//Direction AKA "HORIZONTAL" or "BOTH"
+					"HORIZONTAL"
+					);
+			
+			//Add component to pane
+			pane.add(header, gbc);
 		
-		//Create Specific Time Reminders Title
-			title = new JLabel("Create Specific Time Reminder", SwingConstants.CENTER);
-			title.setFont(new Font("Helvetica", Font.BOLD, 25));
-			title.setForeground(new Color(20, 31, 26));
-			//Grid positioning
-			gbc.gridx = 1;
-			gbc.gridy = 0;
-			//Internal padding
-			gbc.ipady = 5;
-			//Spacing
-			gbc.weightx = 0.2;
-			gbc.weighty = 0;
-			//As window resizes, components stretch horizontally
-			gbc.fill = GridBagConstraints.HORIZONTAL;
-			//Add component to pane, follows constraints
-			pane.add(title, gbc);
-		
-		//Reminder name
-			name = new JLabel("Reminder Name");
-			name.setFont(new Font("Helvetica", Font.BOLD, 13));
-			name.setForeground(new Color(30, 47, 39));
-			//Grid positioning
-			gbc.gridx = 1;
-			gbc.gridy = 1;
-			//Internal padding
-			gbc.ipady = 1;
-			//Spacing
-			gbc.weightx = 0.2;
-			gbc.weighty = 0;
-			//As window resizes, components stretch horizontally
-			gbc.fill = GridBagConstraints.HORIZONTAL;
-			//Add component to pane, follows constraints
+		//Reminder Name Title
+			JLabel name = SpecificReminder.reminderNameTitle();
+	
+			//GBC Values	
+			gbc = gbcSetValues(
+					//Constraint	
+					gbc, 
+					
+					//Grid X, Grid Y
+					1, 1, 
+					
+					//Internal Padding Y
+					1, 
+					
+					//Weight X, Weight Y
+					0.2, 0,
+					
+					//Direction AKA "HORIZONTAL" or "BOTH"
+					"HORIZONTAL"
+					);
+			
+			//Add component to pane
 			pane.add(name, gbc);
 		
 		//Reminder Name Text Field
-			reminderName = new JTextField("");
-			//Grid positioning
-			gbc.gridx = 1;
-			gbc.gridy = 2;
-			//Internal padding
-			gbc.ipady = 5;
-			//Spacing
-			gbc.weightx = 0.2;
-			gbc.weighty = 0;
-			//As window resizes, components stretch horizontally
-			gbc.fill = GridBagConstraints.HORIZONTAL;
+			JTextField reminderName = SpecificReminder.createReminderName();
+			
+			//GBC Values	
+			gbc = gbcSetValues(
+					//Constraint - GridBagConstraints	
+					gbc, 
+					
+					//Grid X, Grid Y - Int
+					1, 2, 
+					
+					//Internal Padding Y - Int
+					5, 
+					
+					//Weight X, Weight Y - Double
+					0.2, 0,
+					
+					//Direction AKA "HORIZONTAL" or "BOTH"
+					"HORIZONTAL"
+					);
+			
 			//Add component to pane, follows constraints
 			pane.add(reminderName, gbc);
 		
 		//Description
-			desc = new JLabel("Description");
-			desc.setFont(new Font("Helvetica", Font.BOLD, 13));
-			desc.setForeground(new Color(30, 47, 39));
-			//Grid positioning
-			gbc.gridx = 1;
-			gbc.gridy = 3;
-			//Internal padding
-			gbc.ipady = 1;
-			//Spacing
-			gbc.weightx = 0.2;
-			gbc.weighty = 0;
-			//As window resizes, components stretch horizontally
-			gbc.fill = GridBagConstraints.HORIZONTAL;
+			JLabel desc = SpecificReminder.reminderDescTitle();
+			
+			//GBC Values	
+			gbc = gbcSetValues(
+					//Constraint	
+					gbc, 
+					
+					//Grid X, Grid Y
+					1, 3, 
+					
+					//Internal Padding Y
+					1, 
+					
+					//Weight X, Weight Y
+					0.2, 0,
+					
+					//Direction AKA "HORIZONTAL" or "BOTH"
+					"HORIZONTAL"
+					);
+			
 			//Add component to pane, follows constraints
 			pane.add(desc, gbc);
 		
 		//Description Text Field
-			description = new JTextField("");
-			//Grid positioning
-			gbc.gridx = 1;
-			gbc.gridy = 4;
-			//Internal padding
-			gbc.ipady = 5;
-			//Spacing
-			gbc.weightx = 0.2;
-			gbc.weighty = 0;
-			//As window resizes, components stretch horizontally
-			gbc.fill = GridBagConstraints.HORIZONTAL;
+			JTextField description = SpecificReminder.createReminderDesc();
+			
+			//GBC Values	
+			gbc = gbcSetValues(
+					//Constraint	
+					gbc, 
+					
+					//Grid X, Grid Y
+					1, 4, 
+					
+					//Internal Padding Y
+					5, 
+					
+					//Weight X, Weight Y
+					0.2, 0,
+					
+					//Direction AKA "HORIZONTAL" or "BOTH"
+					"HORIZONTAL"
+					);
+			
 			//Add component to pane, follows constraints
 			pane.add(description, gbc);
 		
 		//Time
-			time = new JLabel("At what time would you like to be reminded?");
-			time.setFont(new Font("Helvetica", Font.BOLD, 13));
-			time.setForeground(new Color(30, 47, 39));
-			//Grid positioning
-			gbc.gridx = 1;
-			gbc.gridy = 5;
-			//Internal padding
-			gbc.ipady = 1;
-			//Spacing
-			gbc.weightx = 0.2;
-			gbc.weighty = 0;
-			//As window resizes, components stretch horizontally
-			gbc.fill = GridBagConstraints.HORIZONTAL;
+			JLabel time = SpecificReminder.reminderTimeTitle();
+			
+			//GBC Values	
+			gbc = gbcSetValues(
+					//Constraint	
+					gbc, 
+					
+					//Grid X, Grid Y
+					1, 5, 
+					
+					//Internal Padding Y
+					1, 
+					
+					//Weight X, Weight Y
+					0.2, 0,
+					
+					//Direction AKA "HORIZONTAL" or "BOTH"
+					"HORIZONTAL"
+					);
+
 			//Add component to pane, follows constraints
 			pane.add(time, gbc);
 		
 		//Time Spinner
-			JTextField remTime = new JTextField("HH:mm");
+			JTextField remTime = SpecificReminder.createReminderTime();
 			
-			//Grid positioning
-			gbc.gridx = 1;
-			gbc.gridy = 6;
-			//Internal padding
-			gbc.ipady = 5;
-			//Spacing
-			gbc.weightx = 0.2;
-			gbc.weighty = 0;
-			//As window resizes, components stretch horizontally
-			gbc.fill = GridBagConstraints.HORIZONTAL;
+			//GBC Values	
+			gbc = gbcSetValues(
+					//Constraint	
+					gbc, 
+					
+					//Grid X, Grid Y
+					1, 6, 
+					
+					//Internal Padding Y
+					5, 
+					
+					//Weight X, Weight Y
+					0.2, 0,
+					
+					//Direction AKA "HORIZONTAL" or "BOTH"
+					"HORIZONTAL"
+					);
+
 			//Add component to pane, follows constraints
 			pane.add(remTime, gbc);
 			
-			//Space
-			space = new JLabel("");
-			//Grid positioning
-			gbc.gridx = 1;
-			gbc.gridy = 7;
-			//Internal padding
-			gbc.ipady = 50;
-			//Spacing
-			gbc.weightx = 0.2;
-			gbc.weighty = 0;
-			//As window resizes, components stretch horizontally
-			gbc.fill = GridBagConstraints.BOTH;
+		//Spaces
+			//Space 1
+			JLabel space = new JLabel("");
+			
+			//GBC Values	
+			gbc = gbcSetValues(
+					//Constraint	
+					gbc, 
+					
+					//Grid X, Grid Y
+					1, 7, 
+					
+					//Internal Padding Y
+					50, 
+					
+					//Weight X, Weight Y
+					0.2, 0,
+					
+					//Direction AKA "HORIZONTAL" or "BOTH"
+					"BOTH"
+					);
+
 			//Add component to pane, follows constraints
 			pane.add(space, gbc);
-	
+			
+			//Space 2
+			JLabel space2 = new JLabel("");
+			
+			//GBC Values	
+			gbc = gbcSetValues(
+					//Constraint	
+					gbc, 
+					
+					//Grid X, Grid Y
+					1, 8, 
+					
+					//Internal Padding Y
+					100, 
+					
+					//Weight X, Weight Y
+					0.2, 0,
+					
+					//Direction AKA "HORIZONTAL" or "BOTH"
+					"BOTH"
+					);
+			
+			//Add component to pane, follows constraints
+			pane.add(space2, gbc);
 		
 		//Submit
-			submit = new JButton("Submit");
-			submit.setFont(new Font("Helvetica", Font.BOLD, 13));
-			submit.setForeground(Color.WHITE);
-			submit.setBackground(new Color(91,146,121));
-			//Grid positioning
-			gbc.gridx = 1;
-			gbc.gridy = 7;
-			//Internal padding
-			gbc.ipady = 1;
-			//Spacing
-			gbc.weightx = 0.2;
-			gbc.weighty = 0;
-			//As window resizes, components stretch horizontally
-			gbc.fill = GridBagConstraints.NONE;
+			JButton submit = SpecificReminder.submitButton();
+			
+			//GBC Values	
+			gbc = gbcSetValues(
+					//Constraint	
+					gbc, 
+					
+					//Grid X, Grid Y
+					1, 7, 
+					
+					//Internal Padding Y
+					1, 
+					
+					//Weight X, Weight Y
+					0.2, 0,
+					
+					//Direction AKA "HORIZONTAL" or "BOTH"
+					"NONE"
+					);
+			
 			//Add component to pane, follows constraints
 			pane.add(submit, gbc);
 			
+			//When user clicks submit button
 			submit.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent ae) {
-
+	
 					String dbName = reminderName.getText();
 					String dbDesc = description.getText();
 					String dbTime = remTime.getText();
@@ -268,26 +333,10 @@ public class CreateReminder extends Frame {
 					}
 					
 				}
-			});
-			
-		//Space
-			space2 = new JLabel("");
-			//Grid positioning
-			gbc.gridx = 1;
-			gbc.gridy = 8;
-			//Internal padding
-			gbc.ipady = 100;
-			//Spacing
-			gbc.weightx = 0.2;
-			gbc.weighty = 0;
-			//As window resizes, components stretch horizontally
-			gbc.fill = GridBagConstraints.BOTH;
-			//Add component to pane, follows constraints
-			pane.add(space2, gbc);
-			
-			
+			});		
 		
 	}
+	
 	
 	public static void addRangedComponentsToPane(Container pane) {
 		
@@ -305,16 +354,25 @@ public class CreateReminder extends Frame {
 			title = new JLabel("Create Ranged Time Reminder", SwingConstants.CENTER);
 			title.setFont(new Font("Helvetica", Font.BOLD, 25));
 			title.setForeground(new Color(20, 31, 26));
-			//Grid positioning
-			gbc.gridx = 1;
-			gbc.gridy = 0;
-			//Internal padding
-			gbc.ipady = 5;
-			//Spacing
-			gbc.weightx = 0.2;
-			gbc.weighty = 0;
-			//As window resizes, components stretch horizontally
-			gbc.fill = GridBagConstraints.HORIZONTAL;
+			
+			//GBC Values	
+			gbc = gbcSetValues(
+					//Constraint	
+					gbc, 
+					
+					//Grid X, Grid Y
+					1, 0, 
+					
+					//Internal Padding Y
+					5, 
+					
+					//Weight X, Weight Y
+					0.2, 0,
+					
+					//Direction AKA "HORIZONTAL" or "BOTH"
+					"HORIZONTAL"
+					);
+
 			//Add component to pane, follows constraints
 			pane.add(title, gbc);
 		
@@ -322,31 +380,49 @@ public class CreateReminder extends Frame {
 			name = new JLabel("Reminder Name");
 			name.setFont(new Font("Helvetica", Font.BOLD, 13));
 			name.setForeground(new Color(30, 47, 39));
-			//Grid positioning
-			gbc.gridx = 1;
-			gbc.gridy = 1;
-			//Internal padding
-			gbc.ipady = 1;
-			//Spacing
-			gbc.weightx = 0.2;
-			gbc.weighty = 0;
-			//As window resizes, components stretch horizontally
-			gbc.fill = GridBagConstraints.HORIZONTAL;
+			
+			//GBC Values	
+			gbc = gbcSetValues(
+					//Constraint	
+					gbc, 
+					
+					//Grid X, Grid Y
+					1, 1, 
+					
+					//Internal Padding Y
+					1, 
+					
+					//Weight X, Weight Y
+					0.2, 0,
+					
+					//Direction AKA "HORIZONTAL" or "BOTH"
+					"HORIZONTAL"
+					);
+
 			//Add component to pane, follows constraints
 			pane.add(name, gbc);
 		
 		//Reminder Name Text Field
 			reminderName = new JTextField("");
-			//Grid positioning
-			gbc.gridx = 1;
-			gbc.gridy = 2;
-			//Internal padding
-			gbc.ipady = 5;
-			//Spacing
-			gbc.weightx = 0.2;
-			gbc.weighty = 0;
-			//As window resizes, components stretch horizontally
-			gbc.fill = GridBagConstraints.HORIZONTAL;
+			
+			//GBC Values	
+			gbc = gbcSetValues(
+					//Constraint	
+					gbc, 
+					
+					//Grid X, Grid Y
+					1, 2, 
+					
+					//Internal Padding Y
+					5, 
+					
+					//Weight X, Weight Y
+					0.2, 0,
+					
+					//Direction AKA "HORIZONTAL" or "BOTH"
+					"HORIZONTAL"
+					);
+
 			//Add component to pane, follows constraints
 			pane.add(reminderName, gbc);
 		
@@ -354,31 +430,49 @@ public class CreateReminder extends Frame {
 			desc = new JLabel("Description");
 			desc.setFont(new Font("Helvetica", Font.BOLD, 13));
 			desc.setForeground(new Color(30, 47, 39));
-			//Grid positioning
-			gbc.gridx = 1;
-			gbc.gridy = 3;
-			//Internal padding
-			gbc.ipady = 1;
-			//Spacing
-			gbc.weightx = 0.2;
-			gbc.weighty = 0;
-			//As window resizes, components stretch horizontally
-			gbc.fill = GridBagConstraints.HORIZONTAL;
+			
+			//GBC Values	
+			gbc = gbcSetValues(
+					//Constraint	
+					gbc, 
+					
+					//Grid X, Grid Y
+					1, 3, 
+					
+					//Internal Padding Y
+					1, 
+					
+					//Weight X, Weight Y
+					0.2, 0,
+					
+					//Direction AKA "HORIZONTAL" or "BOTH"
+					"HORIZONTAL"
+					);
+
 			//Add component to pane, follows constraints
 			pane.add(desc, gbc);
 		
 		//Description Text Field
 			description = new JTextField("");
-			//Grid positioning
-			gbc.gridx = 1;
-			gbc.gridy = 4;
-			//Internal padding
-			gbc.ipady = 5;
-			//Spacing
-			gbc.weightx = 0.2;
-			gbc.weighty = 0;
-			//As window resizes, components stretch horizontally
-			gbc.fill = GridBagConstraints.HORIZONTAL;
+			
+			//GBC Values	
+			gbc = gbcSetValues(
+					//Constraint	
+					gbc, 
+					
+					//Grid X, Grid Y
+					1, 4, 
+					
+					//Internal Padding Y
+					5, 
+					
+					//Weight X, Weight Y
+					0.2, 0,
+					
+					//Direction AKA "HORIZONTAL" or "BOTH"
+					"HORIZONTAL"
+					);
+
 			//Add component to pane, follows constraints
 			pane.add(description, gbc);
 		
@@ -386,32 +480,49 @@ public class CreateReminder extends Frame {
 			time = new JLabel("How many times would you like to be reminded?");
 			time.setFont(new Font("Helvetica", Font.BOLD, 13));
 			time.setForeground(new Color(30, 47, 39));
-			//Grid positioning
-			gbc.gridx = 1;
-			gbc.gridy = 5;
-			//Internal padding
-			gbc.ipady = 1;
-			//Spacing
-			gbc.weightx = 0.2;
-			gbc.weighty = 0;
-			//As window resizes, components stretch horizontally
-			gbc.fill = GridBagConstraints.HORIZONTAL;
+			
+			//GBC Values	
+			gbc = gbcSetValues(
+					//Constraint	
+					gbc, 
+					
+					//Grid X, Grid Y
+					1, 5, 
+					
+					//Internal Padding Y
+					1, 
+					
+					//Weight X, Weight Y
+					0.2, 0,
+					
+					//Direction AKA "HORIZONTAL" or "BOTH"
+					"HORIZONTAL"
+					);
+
 			//Add component to pane, follows constraints
 			pane.add(time, gbc);
 			
 		//How many times
 			JTextField numTimes = new JTextField("");
 			
-			//Grid positioning
-			gbc.gridx = 1;
-			gbc.gridy = 6;
-			//Internal padding
-			gbc.ipady = 5;
-			//Spacing
-			gbc.weightx = 0.2;
-			gbc.weighty = 0;
-			//As window resizes, components stretch horizontally
-			gbc.fill = GridBagConstraints.HORIZONTAL;
+			//GBC Values	
+			gbc = gbcSetValues(
+					//Constraint	
+					gbc, 
+					
+					//Grid X, Grid Y
+					1, 6, 
+					
+					//Internal Padding Y
+					5, 
+					
+					//Weight X, Weight Y
+					0.2, 0,
+					
+					//Direction AKA "HORIZONTAL" or "BOTH"
+					"HORIZONTAL"
+					);
+			
 			//Add component to pane, follows constraints
 			pane.add(numTimes, gbc);
 			
@@ -419,31 +530,49 @@ public class CreateReminder extends Frame {
 			hours = new JLabel("Between the hours of");
 			hours.setFont(new Font("Helvetica", Font.BOLD, 13));
 			hours.setForeground(new Color(30, 47, 39));
-			//Grid positioning
-			gbc.gridx = 1;
-			gbc.gridy = 7;
-			//Internal padding
-			gbc.ipady = 1;
-			//Spacing
-			gbc.weightx = 0.2;
-			gbc.weighty = 0;
-			//As window resizes, components stretch horizontally
-			gbc.fill = GridBagConstraints.HORIZONTAL;
+			
+			//GBC Values	
+			gbc = gbcSetValues(
+					//Constraint	
+					gbc, 
+					
+					//Grid X, Grid Y
+					1, 7, 
+					
+					//Internal Padding Y
+					1, 
+					
+					//Weight X, Weight Y
+					0.2, 0,
+					
+					//Direction AKA "HORIZONTAL" or "BOTH"
+					"HORIZONTAL"
+					);
+
 			//Add component to pane, follows constraints
 			pane.add(hours, gbc);
 			
 		//Time Spinner 1
 			JTextField remTime1 = new JTextField("HH:00");
-			//Grid positioning
-			gbc.gridx = 1;
-			gbc.gridy = 8;
-			//Internal padding
-			gbc.ipady = 5;
-			//Spacing
-			gbc.weightx = 0.2;
-			gbc.weighty = 0;
-			//As window resizes, components stretch horizontally
-			gbc.fill = GridBagConstraints.HORIZONTAL;
+			
+			//GBC Values	
+			gbc = gbcSetValues(
+					//Constraint	
+					gbc, 
+					
+					//Grid X, Grid Y
+					1, 8, 
+					
+					//Internal Padding Y
+					5, 
+					
+					//Weight X, Weight Y
+					0.2, 0,
+					
+					//Direction AKA "HORIZONTAL" or "BOTH"
+					"HORIZONTAL"
+					);
+			
 			//Add component to pane, follows constraints
 			pane.add(remTime1, gbc);
 			
@@ -451,70 +580,106 @@ public class CreateReminder extends Frame {
 			and = new JLabel("and");
 			and.setFont(new Font("Helvetica", Font.BOLD, 13));
 			and.setForeground(new Color(30, 47, 39));
-			//Grid positioning
-			gbc.gridx = 1;
-			gbc.gridy = 9;
-			//Internal padding
-			gbc.ipady = 1;
-			//Spacing
-			gbc.weightx = 0.2;
-			gbc.weighty = 0;
-			//As window resizes, components stretch horizontally
-			gbc.fill = GridBagConstraints.HORIZONTAL;
+			
+			//GBC Values	
+			gbc = gbcSetValues(
+					//Constraint	
+					gbc, 
+					
+					//Grid X, Grid Y
+					1, 9, 
+					
+					//Internal Padding Y
+					1, 
+					
+					//Weight X, Weight Y
+					0.2, 0,
+					
+					//Direction AKA "HORIZONTAL" or "BOTH"
+					"HORIZONTAL"
+					);
+			
 			//Add component to pane, follows constraints
 			pane.add(and, gbc);
 			
 		//Time Spinner 2
 			JTextField remTime2 = new JTextField("HH:00");
-			//Grid positioning
-			gbc.gridx = 1;
-			gbc.gridy = 10;
-			//Internal padding
-			gbc.ipady = 5;
-			//Spacing
-			gbc.weightx = 0.2;
-			gbc.weighty = 0;
-			//As window resizes, components stretch horizontally
-			gbc.fill = GridBagConstraints.HORIZONTAL;
+			
+			//GBC Values	
+			gbc = gbcSetValues(
+					//Constraint	
+					gbc, 
+					
+					//Grid X, Grid Y
+					1, 10, 
+					
+					//Internal Padding Y
+					5, 
+					
+					//Weight X, Weight Y
+					0.2, 0,
+					
+					//Direction AKA "HORIZONTAL" or "BOTH"
+					"HORIZONTAL"
+					);
+			
 			//Add component to pane, follows constraints
 			pane.add(remTime2, gbc);
 			
 		//Space
 			space = new JLabel("");
-			//Grid positioning
-			gbc.gridx = 1;
-			gbc.gridy = 11;
-			//Internal padding
-			gbc.ipady = 5;
-			//Spacing
-			gbc.weightx = 0.2;
-			gbc.weighty = 0;
-			//As window resizes, components stretch horizontally
-			gbc.fill = GridBagConstraints.BOTH;
+			
+			//GBC Values	
+			gbc = gbcSetValues(
+					//Constraint	
+					gbc, 
+					
+					//Grid X, Grid Y
+					1, 11, 
+					
+					//Internal Padding Y
+					5, 
+					
+					//Weight X, Weight Y
+					0.2, 0,
+					
+					//Direction AKA "HORIZONTAL" or "BOTH"
+					"BOTH"
+					);
+	
 			//Add component to pane, follows constraints
 			pane.add(space, gbc);
-
+	
 		//Submit
 			submit = new JButton("Submit");
 			submit.setFont(new Font("Helvetica", Font.BOLD, 13));
 			submit.setForeground(Color.WHITE);
 			submit.setBackground(new Color(91,146,121));
-			//Grid positioning
-			gbc.gridx = 1;
-			gbc.gridy = 12;
-			//Internal padding
-			gbc.ipady = 1;
-			//Spacing
-			gbc.weightx = 0.2;
-			gbc.weighty = 0;
-			//As window resizes, components stretch horizontally
-			gbc.fill = GridBagConstraints.NONE;
+			
+			//GBC Values	
+			gbc = gbcSetValues(
+					//Constraint	
+					gbc, 
+					
+					//Grid X, Grid Y
+					1, 12, 
+					
+					//Internal Padding Y
+					1, 
+					
+					//Weight X, Weight Y
+					0.2, 0,
+					
+					//Direction AKA "HORIZONTAL" or "BOTH"
+					"NONE"
+					);
+			
 			//Add component to pane, follows constraints
 			pane.add(submit, gbc);
 			
 			submit.addActionListener(new ActionListener() {
 				public void actionPerformed(ActionEvent ae) {
-
+	
 					String dbName = reminderName.getText();
 					String dbDesc = description.getText();
 					String dbNumTimes = numTimes.getText();
@@ -604,21 +769,30 @@ public class CreateReminder extends Frame {
 			
 		//Space
 			space2 = new JLabel("");
-			//Grid positioning
-			gbc.gridx = 1;
-			gbc.gridy = 13;
-			//Internal padding
-			gbc.ipady = 10;
-			//Spacing
-			gbc.weightx = 0.2;
-			gbc.weighty = 0;
-			//As window resizes, components stretch horizontally
-			gbc.fill = GridBagConstraints.BOTH;
-			//Add component to pane, follows constraints
+			
+			//GBC Values	
+			gbc = gbcSetValues(
+					//Constraint	
+					gbc, 
+					
+					//Grid X, Grid Y
+					1, 13, 
+					
+					//Internal Padding Y
+					10, 
+					
+					//Weight X, Weight Y
+					0.2, 0,
+					
+					//Direction AKA "HORIZONTAL" or "BOTH"
+					"BOTH"
+					);
+			
+			//Add component and constraints to pane
 			pane.add(space2, gbc);
-		
+	
 	}
-
+	
 	
 }
 

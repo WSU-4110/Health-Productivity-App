@@ -68,38 +68,40 @@ public class login_window extends JFrame
 
         JLabel lblNewLabel = new JLabel("Login");
         lblNewLabel.setForeground(Color.BLACK);
-        lblNewLabel.setFont(new Font("Times New Roman", Font.PLAIN, 46));
+        lblNewLabel.setFont(new Font("Helvetica", Font.BOLD, 25));
         lblNewLabel.setBounds(423, 13, 273, 93);
         contentPane.add(lblNewLabel);
 
         textField = new JTextField();
-        textField.setFont(new Font("Tahoma", Font.PLAIN, 32));
+        textField.setFont(new Font("Helvetica", Font.BOLD, 15));
         textField.setBounds(481, 170, 281, 68);
         contentPane.add(textField);
         textField.setColumns(10);
 
         passwordField = new JPasswordField();
-        passwordField.setFont(new Font("Tahoma", Font.PLAIN, 32));
+        passwordField.setFont(new Font("Helvetica", Font.BOLD, 15));
         passwordField.setBounds(481, 286, 281, 68);
         contentPane.add(passwordField);
 
         JLabel lblUsername = new JLabel("Email:");
         lblUsername.setBackground(Color.BLACK);
         lblUsername.setForeground(Color.BLACK);
-        lblUsername.setFont(new Font("Tahoma", Font.PLAIN, 31));
+        lblUsername.setFont(new Font("Helvetica", Font.BOLD, 15));
         lblUsername.setBounds(250, 166, 193, 52);
         contentPane.add(lblUsername);
 
         JLabel lblPassword = new JLabel("Password:");
         lblPassword.setForeground(Color.BLACK);
         lblPassword.setBackground(Color.CYAN);
-        lblPassword.setFont(new Font("Tahoma", Font.PLAIN, 31));
+        lblPassword.setFont(new Font("Helvetica", Font.BOLD, 15));
         lblPassword.setBounds(250, 286, 193, 52);
         contentPane.add(lblPassword);
 
         registerButton = new JButton("Register");
-        registerButton.setFont(new Font("Tahoma", Font.PLAIN, 26));
+        registerButton.setFont(new Font("Helvetica", Font.BOLD, 15));
         registerButton.setBounds(345, 392, 162, 73);
+        registerButton.setForeground(Color.WHITE);
+        registerButton.setBackground(new Color(91,146,121));
         registerButton.addActionListener(new ActionListener()
         {
 
@@ -114,8 +116,10 @@ public class login_window extends JFrame
         contentPane.add(registerButton);
         
         btnNewButton = new JButton("Login");
-        btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 26));
+        btnNewButton.setFont(new Font("Helvetica", Font.BOLD, 15));
         btnNewButton.setBounds(545, 392, 162, 73);
+        btnNewButton.setForeground(Color.WHITE);
+        btnNewButton.setBackground(new Color(91,146,121));
         btnNewButton.addActionListener(new ActionListener()
         {
 
@@ -125,10 +129,10 @@ public class login_window extends JFrame
                 String password = passwordField.getText();
                 try
                 {
-                    Connection connection = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/login_test", "root", "password1234");
+                    Connection connection = (Connection) DriverManager.getConnection("jdbc:mysql://localhost:3306/healthApp", "root", "password1234");
 
                     PreparedStatement st = (PreparedStatement) connection
-                        .prepareStatement("SELECT Email, password from account where Email=? and password=?");
+                        .prepareStatement("SELECT email, password from users where email=? and password=?");
 
                     st.setString(1, userName);
                     st.setString(2, password);
