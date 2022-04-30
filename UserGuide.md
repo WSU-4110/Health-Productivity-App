@@ -1,9 +1,9 @@
-## User Guide
+# User Guide
 
-# Login/Registration
+## Login/Registration
 
-# Main Panel
+## Main Panel
 
-# Custom Reminder
+## Custom Reminder
 
-# Preset Reminder 
+## Preset Reminder 
