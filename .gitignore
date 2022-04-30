@@ -1,3 +1,8 @@
 # Page for files that should be ignored
 bin
 *.class
+# Ignore Gradle project-specific cache directory
+.gradle
+
+# Ignore Gradle build output directory
+build

@@ -1,0 +1,16 @@
+plugins {
+	id 'java'
+	id 'eclipse' // optional (to generate Eclipse project files)
+}
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	testImplementation('org.junit.jupiter:junit-jupiter:5.4.0')
+}
+
+test {
+	useJUnitPlatform()
+}
