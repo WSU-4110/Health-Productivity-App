@@ -18,7 +18,7 @@ There are 3 types of reminders a user can create:
   - Ranged Time Reminder
   - Preset Reminder
     - Drink water
-    - Stand up
+    - Standing break
 
 Refer to the User Guide linked below for detailed instructions on how to use the application.
 
