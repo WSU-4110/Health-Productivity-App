@@ -1,7 +1,7 @@
 # Remindly
 The purpose of this application is to improve the health and well being of its users utilizing timed notifications/reminders.
 
-# Contributors:
+## Contributors:
 Jacob Bennett
 
 Monica Garcia
