@@ -1,1 +1,1 @@
-## Installation and User Guide
+## Installation Guide
