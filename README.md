@@ -9,3 +9,9 @@ Monica Garcia
 Masrur Akif
 
 Mohammad Ismail
+
+## Installation Guide
+https://github.com/WSU-4110/Health-Productivity-App/blob/master/INSTALL.md
+
+## User Guide
+https://github.com/WSU-4110/Health-Productivity-App/blob/master/UserGuide.md
