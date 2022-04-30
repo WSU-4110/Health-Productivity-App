@@ -18,6 +18,7 @@ There are 3 types of reminders a user can create:
   - Preset Reminder
     - Drink water
     - Stand up
+
 Refer to the User Guide linked below for detailed instructions on how to use the application.
 
 ## Installation Guide
