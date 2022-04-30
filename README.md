@@ -12,6 +12,7 @@ Mohammad Ismail
 
 ## Functionalities
 This application can create timed reminders customized by the user.
+
 There are 3 types of reminders a user can create:
   - Specific Time Reminder
   - Ranged Time Reminder
