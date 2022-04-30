@@ -1,4 +1,4 @@
-# Health-Productivity-App (name pending)
+# Remindly
 The objective of this application is to improve the health and well being of its users.
 
 ## Contributors:
