@@ -18,6 +18,10 @@ After successfully logging in, you will be directed to the main panel. This pane
 
 ![main](https://user-images.githubusercontent.com/84686155/166133979-b56f103f-b8ad-4f06-8bf1-5fbffb0db486.png)
 
-## Custom Reminder
+## Specific Time Reminder
+
+## Ranged Time Reminder
 
 ## Preset Reminder 
+
+## Account Settings
