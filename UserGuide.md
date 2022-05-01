@@ -8,6 +8,8 @@ When initially running the app, you will be directed to the login panel (as show
 
 When directed to the registration panel (shown below), enter your first name, last name, username, email, password, and phone number to start your registration. To complete the registration, click register. You can now login into the application.
 
+![reg](https://user-images.githubusercontent.com/84686155/166133884-84bc1f0a-8788-4aa8-9b09-cb0d64c1a723.png)
+
 ## Main Panel
 
 ## Custom Reminder
