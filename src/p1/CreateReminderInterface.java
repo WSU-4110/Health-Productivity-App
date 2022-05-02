@@ -16,14 +16,23 @@ interface CreateReminderInterface
 	public static void reminderDescTitle() { }
 	public static void createReminderDesc() { }
 	
+	public static void submitButton() { }
+	
+	//Specific
 	public static void reminderTimeTitle() { }
 	public static void createReminderTime() { }
 	
-	public static void submitButton() { }
-	
-	//Ranged
+	//Ranged & Standing
 	public static void reminderNumTimesTitle() { }
 	public static void createReminderNumTimes() { }
+	
+	public static void reminderBetweenHoursTitle() { }
+	
+	public static void createReminderFirstTime() { }
+	
+	public static void andTitle() { }
+	
+	public static void createReminderSecondTime() { }
 	
 	//Drink Water
 	public static void reminderWeightTitle() { }

@@ -27,7 +27,7 @@ public class SignInDash extends Layout {
 		gbc.insets = new Insets (2, 5, 2, 5);
 		
 		//Reminders Application Header
-		JLabel reminderAppHeader = new JLabel("Reminders Application", SwingConstants.CENTER);
+		JLabel reminderAppHeader = new JLabel("R E M I N D L Y", SwingConstants.CENTER);
 		reminderAppHeader.setFont(new Font("Helvetica", Font.BOLD, 25));
 		reminderAppHeader.setForeground(new Color(20, 31, 26));
 		
@@ -52,9 +52,9 @@ public class SignInDash extends Layout {
 		//Add component to pane, follows constraints
 		pane.add(reminderAppHeader, gbc);
 		
-		JLabel label2 = new JLabel("Custom Reminders", SwingConstants.CENTER);
-		label2.setFont(new Font("Helvetica", Font.BOLD, 15));
-		label2.setForeground(new Color(30, 47, 39));
+		JLabel customRemTitle = new JLabel("Custom Reminders", SwingConstants.CENTER);
+		customRemTitle.setFont(new Font("Helvetica", Font.BOLD, 15));
+		customRemTitle.setForeground(new Color(30, 47, 39));
 		
 		//GBC Values	
 		gbc = gbcSetValues(
@@ -75,11 +75,11 @@ public class SignInDash extends Layout {
 				);
 
 		//Add component to pane, follows constraints
-		pane.add(label2, gbc);
+		pane.add(customRemTitle, gbc);
 		
-		JLabel label5 = new JLabel("Current Reminders", SwingConstants.CENTER);
-		label5.setFont(new Font("Helvetica", Font.BOLD, 15));
-		label5.setForeground(new Color(30, 47, 39));
+		JLabel currentRemTitle = new JLabel("Current Reminders", SwingConstants.CENTER);
+		currentRemTitle.setFont(new Font("Helvetica", Font.BOLD, 15));
+		currentRemTitle.setForeground(new Color(30, 47, 39));
 		
 		//GBC Values	
 		gbc = gbcSetValues(
@@ -100,13 +100,13 @@ public class SignInDash extends Layout {
 				);
 
 		//Add component to pane, follows constraints
-		pane.add(label5, gbc);
+		pane.add(currentRemTitle, gbc);
 		
 		//Create Specific Time Reminder button
-		JButton specific = new JButton("+ Create Specific Time Reminder");
-		specific.setFont(new Font("Helvetica", Font.BOLD, 13));
-		specific.setForeground(Color.WHITE);
-		specific.setBackground(new Color(91,146,121));
+		JButton specificRem = new JButton("+ Create Specific Time Reminder");
+		specificRem.setFont(new Font("Helvetica", Font.BOLD, 13));
+		specificRem.setForeground(Color.WHITE);
+		specificRem.setBackground(new Color(91,146,121));
 		
 		//GBC Values	
 		gbc = gbcSetValues(
@@ -127,9 +127,9 @@ public class SignInDash extends Layout {
 				);
 		
 		//Add component to pane, follows constraints
-		pane.add(specific, gbc);
+		pane.add(specificRem, gbc);
 		
-		 specific.addActionListener(
+		specificRem.addActionListener(
 				 new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						
@@ -150,10 +150,10 @@ public class SignInDash extends Layout {
 		);
 		 
 		//Create Ranged Reminder button
-		JButton range = new JButton("+ Create Ranged Time Reminder");
-		range.setFont(new Font("Helvetica", Font.BOLD, 13));
-		range.setForeground(Color.WHITE);
-		range.setBackground(new Color(91,146,121));
+		JButton rangedRem = new JButton("+ Create Ranged Time Reminder");
+		rangedRem.setFont(new Font("Helvetica", Font.BOLD, 13));
+		rangedRem.setForeground(Color.WHITE);
+		rangedRem.setBackground(new Color(91,146,121));
 		
 		//GBC Values	
 		gbc = gbcSetValues(
@@ -174,25 +174,29 @@ public class SignInDash extends Layout {
 				);
 
 		//Add component to pane, follows constraints
-		pane.add(range, gbc);
+		pane.add(rangedRem, gbc);
 			
-		range.addActionListener(
+		rangedRem.addActionListener(
 				 new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						JFrame createReminder = new JFrame("Create Ranged Time Reminder");
+						createReminder.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 						createReminder.getContentPane().setBackground(new Color(239, 245, 243));
-						CreateReminder.addRangedComponentsToPane(createReminder.getContentPane()); 
+						
+						RangedRem rangedReminder = new RangedRem();
+						rangedReminder.addComponentsToPane(createReminder.getContentPane());
+						
 						createReminder.setMinimumSize(new Dimension(800, 490));
 						createReminder.pack();
 						createReminder.setLocationRelativeTo(null);
-						createReminder.setVisible(true); 
+						createReminder.setVisible(true); 					
 				}
 			}
 		);
 		 
-		JLabel label3 = new JLabel("Preset Reminders", SwingConstants.CENTER);
-		label3.setFont(new Font("Helvetica", Font.BOLD, 15));
-		label3.setForeground(new Color(30, 47, 39));
+		JLabel presetTitle = new JLabel("Preset Reminders", SwingConstants.CENTER);
+		presetTitle.setFont(new Font("Helvetica", Font.BOLD, 15));
+		presetTitle.setForeground(new Color(30, 47, 39));
 		
 		//GBC Values
 		gbc.gridheight = 1;
@@ -215,13 +219,13 @@ public class SignInDash extends Layout {
 				);
 		
 		//Add component to pane, follows constraints
-		pane.add(label3, gbc);
+		pane.add(presetTitle, gbc);
 		 
 		//Preset button 1
-		JButton water = new JButton("+ Drink Water");
-		water.setFont(new Font("Helvetica", Font.BOLD, 13));
-		water.setForeground(Color.WHITE);
-		water.setBackground(new Color(91,146,121));
+		JButton waterRem = new JButton("+ Drink Water");
+		waterRem.setFont(new Font("Helvetica", Font.BOLD, 13));
+		waterRem.setForeground(Color.WHITE);
+		waterRem.setBackground(new Color(91,146,121));
 		
 		//GBC Values
 		gbc.gridheight = 1;
@@ -244,9 +248,9 @@ public class SignInDash extends Layout {
 				);
 
 		//Add component to pane, follows constraints
-		pane.add(water, gbc);
+		pane.add(waterRem, gbc);
 		
-		water.addActionListener(
+		waterRem.addActionListener(
 				 new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						JFrame createReminder = new JFrame("Create Water Reminder");
@@ -261,11 +265,11 @@ public class SignInDash extends Layout {
 			}
 		);
 		
-		//Preset button 2
-		JButton standing = new JButton("+ Standing Break");
-		standing.setFont(new Font("Helvetica", Font.BOLD, 13));
-		standing.setForeground(Color.WHITE);
-		standing.setBackground(new Color(91,146,121));
+		
+		JButton standingRem = new JButton("+ Standing Break");
+		standingRem.setFont(new Font("Helvetica", Font.BOLD, 13));
+		standingRem.setForeground(Color.WHITE);
+		standingRem.setBackground(new Color(91,146,121));
 		
 		//GBC Values	
 		gbc.gridheight = 2;
@@ -288,9 +292,9 @@ public class SignInDash extends Layout {
 				);
 		
 		//Add component to pane, follows constraints
-		pane.add(standing, gbc);
+		pane.add(standingRem, gbc);
 		
-		 standing.addActionListener(
+		standingRem.addActionListener(
 				 new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
 						JFrame createReminder = new JFrame("Create Ranged Time Reminder");
@@ -384,11 +388,12 @@ public class SignInDash extends Layout {
 		//Add component to pane, follows constraints
 		pane.add(signOut, gbc);
 		
-		//Reminder Placeholder
-		JButton placeHolder = new JButton("Test Reminder");
-		placeHolder.setFont(new Font("Helvetica", Font.BOLD, 13));
-		placeHolder.setForeground(Color.WHITE);
-		placeHolder.setBackground(new Color(91,146,121));
+		///////////////////////////
+		
+		JButton viewRem = new JButton("View Reminders");
+		viewRem.setFont(new Font("Helvetica", Font.BOLD, 13));
+		viewRem.setForeground(Color.WHITE);
+		viewRem.setBackground(new Color(91,146,121));
 		
 		//GBC Values	
 		gbc = gbcSetValues(
@@ -396,7 +401,7 @@ public class SignInDash extends Layout {
 				gbc, 
 				
 				//Grid X, Grid Y
-				1, 5, 
+				1, 4, 
 				
 				//Internal Padding Y
 				20, 
@@ -407,9 +412,24 @@ public class SignInDash extends Layout {
 				//Direction AKA "HORIZONTAL" or "BOTH"
 				""
 				);
-		
+
 		//Add component to pane, follows constraints
-		pane.add(placeHolder, gbc);
+		pane.add(viewRem, gbc);
+			
+		viewRem.addActionListener(
+				 new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						JFrame createReminder = new JFrame("View Reminders");
+						createReminder.getContentPane().setBackground(new Color(239, 245, 243));	
+						createReminder.setMinimumSize(new Dimension(800, 490));
+						createReminder.pack();
+						createReminder.setLocationRelativeTo(null);
+						createReminder.setVisible(true); 
+				}
+			}
+		);
+		
+		//////////////////////////////////
 		
 		//Clock Title
 		JLabel label4 = new JLabel("Date and Time", SwingConstants.CENTER);
@@ -460,8 +480,8 @@ public class SignInDash extends Layout {
 				""
 				);
 
-				//Add component to pane, follows constraints
-				pane.add(new DisplayClock(), gbc);
+			//Add component to pane, follows constraints
+			pane.add(new DisplayClock(), gbc);
 		
 		
 		//Date
@@ -499,7 +519,7 @@ public class SignInDash extends Layout {
 		pane.add(date, gbc); // date,gbc
 		
 		// edit button
-		JButton Edit = new JButton("Edit");
+		JButton Edit = new JButton("Edit Reminders");
 		Edit.setFont(new Font("Helvetica", Font.BOLD, 13));
 		Edit.setForeground(Color.WHITE);
 		Edit.setBackground(new Color(91,146,121));
@@ -512,7 +532,7 @@ public class SignInDash extends Layout {
 				gbc, 
 				
 				//Grid X, Grid Y
-				1, 4, 
+				1, 5, 
 				
 				//Internal Padding Y
 				20, 
@@ -525,6 +545,7 @@ public class SignInDash extends Layout {
 				);
 
 		pane.add(Edit, gbc);
+		
 		Edit.addActionListener(
 				 new ActionListener() {
 					public void actionPerformed(ActionEvent e) {
@@ -540,13 +561,57 @@ public class SignInDash extends Layout {
 			}
 		);
 	
-	}  
+	
+	///////////////////////////
+	
+	JButton deleteRem = new JButton("Delete Reminders");
+	deleteRem.setFont(new Font("Helvetica", Font.BOLD, 13));
+	deleteRem.setForeground(Color.WHITE);
+	deleteRem.setBackground(new Color(91,146,121));
+	
+	//GBC Values	
+	gbc = gbcSetValues(
+			//Constraint	
+			gbc, 
+			
+			//Grid X, Grid Y
+			1, 7, 
+			
+			//Internal Padding Y
+			20, 
+			
+			//Weight X, Weight Y
+			0.2, 0,
+			
+			//Direction AKA "HORIZONTAL" or "BOTH"
+			""
+			);
+
+	//Add component to pane, follows constraints
+	pane.add(deleteRem, gbc);
+		
+	deleteRem.addActionListener(
+			 new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					JFrame createReminder = new JFrame("Delete Reminders");
+					createReminder.getContentPane().setBackground(new Color(239, 245, 243));
+					createReminder.setMinimumSize(new Dimension(800, 490));
+					createReminder.pack();
+					createReminder.setLocationRelativeTo(null);
+					createReminder.setVisible(true); 
+			}
+		}
+	);
+	
+}
+	
+	//////////////////////////////////
 	
 	//Initializing GUI
 	public static void initGUI() {
 		
 		//Creates Reminder frame
-		JFrame dash = new JFrame("Reminder");
+		JFrame dash = new JFrame("R E M I N D L Y");
 		
 		//GUI components get added to the frame
 		addComponentsToPane(dash.getContentPane());  
