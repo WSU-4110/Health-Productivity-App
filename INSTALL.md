@@ -16,11 +16,11 @@ Install MySQL here: https://dev.mysql.com/downloads/installer/
 
 In a SQL query, create a schema using:
 
-  CREATE DATABASE healthApp;
+  	CREATE DATABASE healthApp;
   
-  USE healthApp;
+  	USE healthApp;
   
-  CREATE TABLE users(
+  	CREATE TABLE users(
 
 	firstName VARCHAR(50),
 	
