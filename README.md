@@ -33,3 +33,6 @@ https://github.com/WSU-4110/Health-Productivity-App/wiki/Scrum-Meeting-Minutes
 
 ## Sprint Retrospectives
 https://github.com/WSU-4110/Health-Productivity-App/wiki/Sprint-Retrospectives
+
+## Product Backlog
+https://github.com/WSU-4110/Health-Productivity-App/wiki/Product-Backlog
