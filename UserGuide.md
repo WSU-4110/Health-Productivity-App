@@ -20,8 +20,24 @@ After successfully logging in, you will be directed to the main panel. This pane
 
 ## Specific Time Reminder
 
+This panel allows you to create a specific time reminder. Input the reminder name, description, and the time to create the reminder.
+
+![specific](https://user-images.githubusercontent.com/84686155/166174104-a157c447-fdd9-419f-a2d9-90ff5e788b43.png)
+
 ## Ranged Time Reminder
+
+This panel allows you to create a ranged time reminder. Input the reminder name, description, frequency, and the ranged time to create the reminder.
+
+![ranged](https://user-images.githubusercontent.com/84686155/166174109-fea3bea5-7a42-44b3-8796-387cd44bc357.png)
 
 ## Preset Reminder 
 
+After clicking either 'Drink Water' or 'Standing Break' form the main panel, you will be directed to this panel. Input the required information to create the reminder.
+
+![water](https://user-images.githubusercontent.com/84686155/166174198-1bcdc4fd-570d-4853-a678-694b18f2c41d.png)
+
 ## Account Settings
+
+This panel allows you to change your account information. Input any information that you may want to change and click submit to update them.
+
+![account](https://user-images.githubusercontent.com/84686155/166174237-8d9ed90c-9c93-47bd-84c5-d7aef18292b8.png)
