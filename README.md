@@ -27,3 +27,6 @@ https://github.com/WSU-4110/Health-Productivity-App/blob/master/INSTALL.md
 
 ## User Guide
 https://github.com/WSU-4110/Health-Productivity-App/blob/master/UserGuide.md
+
+## Scrum Meeting Minutes
+https://github.com/WSU-4110/Health-Productivity-App/wiki/Scrum-Meeting-Minutes
