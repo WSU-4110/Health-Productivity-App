@@ -8,6 +8,10 @@
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/5">
 		<attributes>
+<<<<<<< HEAD
+			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="C:/Users/jacob/.p2/pool/plugins"/>
+=======
+>>>>>>> b847d6774741433e4a7e5f26ac543619c9327630
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>

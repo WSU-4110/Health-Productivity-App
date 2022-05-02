@@ -8,17 +8,11 @@ import java.awt.geom.*;
 import java.time.LocalTime;
 
 
-interface Clock{
-	public void drawClockFace(Graphics2D g);
-	public void drawHand(Graphics2D g, float angle, int radius, Color color);
-}
 
+//dimensions
 class Dimensions {
-	final float degrees06 = (float) (PI / 30);
-	final float degrees30 = degrees06 * 5;
-	final float degrees90 = degrees30 * 3;
-	 
-	int size = 150;
+	
+	int size = 200;
 	int spacing = 10;
 	int diameter = size - 2 * spacing;
 	int cx = diameter / 2 + spacing;
@@ -26,19 +20,30 @@ class Dimensions {
 
 }
 
-class DrawClock implements Clock {
+public class DisplayClock extends JPanel {
 	
 	Dimensions dim = new Dimensions();
 	
-	public void drawClockFace(Graphics2D g) {
+	public static float[] calcDimensions() {
+		float[] arr = new float[3];
 		
+		arr[0] = (float) (PI / 30); // final float degrees06
+		arr[1] = arr[0] * 5; //  final float  degrees30
+		arr[2] = arr[1] * 3; //  final float  degrees60
+		
+		return arr;
+	}
+
+	public Graphics2D drawClockFace(Graphics2D g) {
+
 		g.setStroke(new BasicStroke(2));
 	    g.setColor(Color.white);
 	    g.fillOval(dim.spacing, dim.spacing, dim.diameter, dim.diameter);
 	    g.setColor(Color.black);
 	    g.drawOval(dim.spacing, dim.spacing, dim.diameter, dim.diameter);
-		
-	  
+
+	    
+	    return g;
 	 }
 	
 	public void drawHand(Graphics2D g, float angle, int radius, Color color) {
@@ -47,13 +52,10 @@ class DrawClock implements Clock {
 	    g.setColor(color);
 	    g.drawLine(dim.cx, dim.cy, x, y);
 	}
-}
-
-public class DisplayClock extends JPanel {
 	
-	
-	DrawClock dc = new DrawClock();
-	Dimensions dim = new Dimensions();
+	//DrawClock dc = new DrawClock();
+	//
+	float[] cd = calcDimensions();
 	
 	public DisplayClock() {
 		Dimensions dim = new Dimensions();
@@ -68,29 +70,33 @@ public class DisplayClock extends JPanel {
 	
 	@Override
 	public void paintComponent(Graphics g2) {
+		
+		
 	      super.paintComponent(g2);
 	      Graphics2D g = (Graphics2D) g2;
 	      g.setRenderingHint(RenderingHints.KEY_ANTIALIASING,
 	              RenderingHints.VALUE_ANTIALIAS_ON);
 	 
 	      // call method drawClockFace
-	      dc.drawClockFace(g);
+	      //dc.drawClockFace(g);
+	      g = drawClockFace(g);
+	      
 	 
 	      final LocalTime time = LocalTime.now();
 	      int hour = time.getHour();
 	      int minute = time.getMinute();
 	      int second = time.getSecond();
 	 
-	      float angle = dim.degrees90 - (dim.degrees06 * second);
-	      dc.drawHand(g, angle, dim.diameter / 2 - 30, Color.red);
+	      float angle = cd[2] - (cd[0] * second);
+	      drawHand(g, angle, dim.diameter / 2 - 30, Color.red);
 	 
 	      float minsecs = (minute + second / 60.0F);
-	      angle = dim.degrees90 - (dim.degrees06 * minsecs);
-	     dc.drawHand(g, angle, dim.diameter / 3 + 10, Color.black);
+	      angle = cd[2] - (cd[0] * minsecs);
+	      drawHand(g, angle, dim.diameter / 3 + 10, Color.black);
 	 
 	      float hourmins = (hour + minsecs / 60.0F);
-	      angle = dim.degrees90 - (dim.degrees30 * hourmins);
-	      dc.drawHand(g, angle, dim.diameter / 4 + 10, Color.black);
+	      angle = cd[2] - (cd[1] * hourmins);
+	      drawHand(g, angle, dim.diameter / 4 + 10, Color.black);
 	      
 	      //
 	      Rectangle rec = SwingUtilities.calculateInnerArea(this, null);
