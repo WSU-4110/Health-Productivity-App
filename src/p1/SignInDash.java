@@ -589,6 +589,43 @@ public class SignInDash extends Layout {
 
 	//Add component to pane, follows constraints
 	pane.add(deleteRem, gbc);
+	
+	JButton timer = new JButton("Timer Test (10s)");
+	timer.setFont(new Font("Helvetica", Font.BOLD, 13));
+	timer.setForeground(Color.WHITE);
+	timer.setBackground(new Color(91,146,121));
+	//GBC Values	
+	gbc.gridheight = 2;
+	
+		gbc = gbcSetValues(
+				//Constraint	
+				gbc, 
+				
+				//Grid X, Grid Y
+				1, 8, 
+				
+				//Internal Padding Y
+				20, 
+				
+				//Weight X, Weight Y
+				0.2, 0,
+				
+				//Direction AKA "HORIZONTAL" or "BOTH"
+				""
+				);
+		
+		pane.add(timer, gbc);
+		
+		timer.addActionListener(
+				 new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						ReminderTimer timerRem = new ReminderTimer();
+						timerRem.mainTimer();
+						
+				}
+			}
+		);
+	
 		
 	deleteRem.addActionListener(
 			 new ActionListener() {

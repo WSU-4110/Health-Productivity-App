@@ -4,8 +4,6 @@ import p1.CheckTime;
 import p1.DisplayClock;
 import p1.EditReminder;
 import java.awt.*;
-import static org.junit.jupiter.api.Assertions.*;
-
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
